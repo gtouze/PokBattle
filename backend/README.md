@@ -1,3 +1,7 @@
 # PokBattle Backend
 
-README TODO
+Pour lancer le backend:
+
+npm install
+cd src/
+node server.js
