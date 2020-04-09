@@ -1,0 +1,31 @@
+.DS_STORE
+
+/frontend/dist/
+/frontend/bazel-out
+/frontend/integration/bazel/bazel-*
+frontend/*.log
+frontend/node_modules
+backend/*.log
+backend/node_modules
+
+# Include when developing application packages.
+frontend/.c9
+frontend/.idea/
+frontend/.devcontainer/*
+frontend/.settings/
+frontend/.vscode/launch.json
+frontend/.vscode/settings.json
+frontend/.vscode/tasks.json
+frontend/.vimrc
+frontend/.nvimrc
+
+# Ignore npm/yarn debug log
+frontend/npm-debug.log
+frontend/yarn-error.log
+
+# build-analytics
+frontend/.build-analytics
+
+
+# User specific bazel settings
+frontend/.bazelrc.user
