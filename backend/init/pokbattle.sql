@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  jeu. 09 avr. 2020 à 07:51
+-- Généré le :  ven. 10 avr. 2020 à 07:20
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -50,9 +50,12 @@ DROP TABLE IF EXISTS `dresseur`;
 CREATE TABLE IF NOT EXISTS `dresseur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(40) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `description` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `sexe` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pseudo` (`pseudo`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
