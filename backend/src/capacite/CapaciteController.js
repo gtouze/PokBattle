@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
+const Capacite = require('./Capacite');
 router.use(bodyParser.json());
-var Capacite = require('./Capacite');
 
 router.get('/', function (req, res) {
     Capacite.getCapacites(function(err, rows) {
@@ -69,4 +69,5 @@ router.delete('/:id', function (req, res) {
         }
     });
 });
+
 module.exports = router;

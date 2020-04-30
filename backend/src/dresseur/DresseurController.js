@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
+const Dresseur = require('./Dresseur');
 router.use(bodyParser.json());
-var Dresseur = require('./Dresseur');
 
 router.get('/', function (req, res) {
     Dresseur.getDresseurs(function(err, rows) {
@@ -53,4 +53,5 @@ router.delete('/:id', function (req, res) {
         }
     });
 });
+
 module.exports = router;

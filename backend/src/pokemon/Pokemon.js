@@ -1,6 +1,6 @@
-var db = require('../db');
+const db = require('../db');
 
-var Pokemon = {
+const Pokemon = {
     getPokemons: function(callback) {
         return db.query('SELECT * from pokemon', callback);
     }

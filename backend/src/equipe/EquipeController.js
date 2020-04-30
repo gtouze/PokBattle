@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
+const Equipe = require('./Equipe');
 router.use(bodyParser.json());
-var Equipe = require('./Equipe');
 
 router.get('/', function (req, res) {
     Equipe.getEquipes(function(err, rows) {

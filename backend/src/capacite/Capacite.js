@@ -1,6 +1,6 @@
-var db = require('../db');
+const db = require('../db');
 
-var Capacite = {
+const Capacite = {
     getCapacites: function(callback) {
         return db.query('SELECT * from capacite', callback);
     }

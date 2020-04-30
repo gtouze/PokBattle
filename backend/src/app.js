@@ -1,10 +1,10 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var DresseurController = require('./dresseur/DresseurController');
-var CapaciteController = require('./capacite/CapaciteController');
-var EquipeController = require('./equipe/EquipeController');
-var PokemonController = require('./pokemon/PokemonController');
+const DresseurController = require('./dresseur/DresseurController');
+const CapaciteController = require('./capacite/CapaciteController');
+const EquipeController = require('./equipe/EquipeController');
+const PokemonController = require('./pokemon/PokemonController');
 
 app.use('/dresseurs', DresseurController);
 app.use('/capacites', CapaciteController);

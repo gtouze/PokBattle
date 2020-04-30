@@ -1,9 +1,6 @@
-var db = require('../db');
-var Dresseur = require('./../dresseur/Dresseur');
-var Pokemon = require('./../pokemon/Pokemon');
-var Capacite = require('./../capacite/Capacite');
+const db = require('../db');
 
-var Equipe = {
+const Equipe = {
     getEquipes: function(callback) {
         return db.query('SELECT * from equipe', callback);
     }

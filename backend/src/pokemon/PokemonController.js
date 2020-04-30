@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
+const Pokemon = require('./Pokemon');
 router.use(bodyParser.json());
-var Pokemon = require('./Pokemon');
 
 router.get('/', function (req, res) {
     Pokemon.getPokemons(function(err, rows) {
