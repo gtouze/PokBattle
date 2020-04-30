@@ -26,13 +26,17 @@ router.get('/:id', function (req, res) {
 
 router.post('/', function (req, res) {
     if((req.body.puissance + req.body.precisionCapacite) <= 150 ) {
-        Capacite.createCapacite(req.body, function(err, rows) {
-            if(err) {
-                res.status(400).json(err);
-            } else {
-                res.json(rows);
-            }
-        });
+        if(!["Plante", "Eau", "Feu", "Normal"].includes(req.body.type)) {
+            Capacite.createCapacite(req.body, function(err, rows) {
+                if(err) {
+                    res.status(400).json(err);
+                } else {
+                    res.json(rows);
+                }
+            });
+        } else {
+            res.status(400).json("Seul les capacitées de type Plante, Eau, Feu ou Normal sont actuellement supportées");
+        }
     } else {
         res.status(400).json("Le total de puissance + précision doit être inférieur ou égal à 150");
     }
@@ -40,13 +44,17 @@ router.post('/', function (req, res) {
 
 router.put('/:id', function (req, res) {
     if((req.body.puissance + req.body.precisionCapacite) <= 150 ) {
-        Capacite.updateCapacite([req.body, req.params.id], function(err, rows) {
-            if(err) {
-                res.status(400).json(err);
-            } else {
-                res.json(rows);
-            }
-        });
+        if(!["Plante", "Eau", "Feu", "Normal"].includes(req.body.type)) {
+            Capacite.updateCapacite([req.body, req.params.id], function(err, rows) {
+                if(err) {
+                    res.status(400).json(err);
+                } else {
+                    res.json(rows);
+                }
+            });
+        } else {
+            res.status(400).json("Seul les capacitées de type Plante, Eau, Feu ou Normal sont actuellement supportées");
+        }
     } else {
         res.status(400).json("Le total de puissance + précision doit être inférieur ou égal à 150");
     }
