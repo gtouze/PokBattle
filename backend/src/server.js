@@ -13,10 +13,10 @@ var server = app.listen(port, function() {
 });
 
 var corsOptions = {
-    origin: "http://localhost:3001"
+    origin: "http://localhost:4200/"
 };
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 

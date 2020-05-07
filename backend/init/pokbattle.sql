@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  jeu. 30 avr. 2020 à 13:31
+-- Généré le :  jeu. 07 mai 2020 à 14:46
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `pokemon` (
 
 INSERT INTO `pokemon` (`idPokemon`, `nom`, `type`, `pv`, `atk`, `def`, `vit`) VALUES
 (1, 'Wailord', 'Eau', 170, 90, 45, 60),
-(2, 'Flotajou', 'Eau', 50, 53, 48, 64),
+(2, 'Flotoutan', 'Eau', 75, 98, 63, 101),
 (3, 'Tortank', 'Eau', 79, 84, 103, 78),
 (4, 'Akwakwak', 'Eau', 80, 89, 79, 85),
 (5, 'Aquali', 'Eau', 130, 88, 78, 65),
