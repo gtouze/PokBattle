@@ -1,16 +1,16 @@
 <mat-form-field appearance="fill">
   <mat-label>Nom de capacité</mat-label>
-  <input matInput>
+  <input matInput [(ngModel)]="selectedNom" (input)="onFieldChange()">
 </mat-form-field>
 <br>
 
 <mat-form-field appearance="fill">
   <mat-label>Type</mat-label>
-  <mat-select>
-      <mat-option value="option">Normal</mat-option>
-      <mat-option value="option">Eau</mat-option>
-      <mat-option value="option">Feu</mat-option>
-      <mat-option value="option">Plante</mat-option>
+  <mat-select [(value)]="selectedType" (selectionChange)="onFieldChange()">
+      <mat-option value="Normal">Normal</mat-option>
+      <mat-option value="Eau">Eau</mat-option>
+      <mat-option value="Feu">Feu</mat-option>
+      <mat-option value="Plante">Plante</mat-option>
   </mat-select>
 </mat-form-field>
 <br/>

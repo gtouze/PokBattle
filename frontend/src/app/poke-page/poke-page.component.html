@@ -4,8 +4,8 @@
       <p>Veux tu ajouter un pokémon à une équipe déjà existante? Dans ce cas tu peux renseigner le nom de l'équipe ci-dessous.</p>
       <mat-form-field appearance="fill">
         <mat-label>Nom de l'équipe</mat-label>
-        <mat-select>
-            <mat-option value="option" *ngFor="let nomEquipe of nomEquipeList">{{nomEquipe}}</mat-option>
+        <mat-select [(value)]="selectedEquipe1">
+            <mat-option value="{{nomEquipe}}" *ngFor="let nomEquipe of nomEquipeList">{{nomEquipe}}</mat-option>
         </mat-select>
       </mat-form-field>
       <p>Si tu souhaites créer une nouvelle équipe par contre, il faut renseigner le champs ci-dessous.</p>
@@ -15,7 +15,7 @@
     </div>
     <mat-form-field appearance="fill">
       <mat-label>Nom de l'équipe</mat-label>
-      <input matInput>
+      <input matInput [(ngModel)]="selectedEquipe2">
     </mat-form-field>
   </mat-step>
   <mat-step label="Pokemon">
@@ -77,12 +77,13 @@
     Quelle capacité ton pokemon devrait il posséder?
     <mat-grid-list cols="2" rowHeight="1:1">
       <mat-grid-tile>
-        <app-add-abilities></app-add-abilities>
+        <app-add-abilities (detailCapacite)="changeCapacite1($event)"></app-add-abilities>
       </mat-grid-tile>
       <mat-grid-tile>
-        <app-add-abilities></app-add-abilities>
+        <app-add-abilities (detailCapacite)="changeCapacite2($event)"></app-add-abilities>
       </mat-grid-tile>
     </mat-grid-list>
+    <button mat-button (click)="createAbilities()">Créer</button>
   </mat-step>
 </mat-horizontal-stepper>
 

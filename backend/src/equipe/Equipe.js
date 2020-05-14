@@ -10,7 +10,7 @@ const Equipe = {
     }
     ,
     createEquipe: function (Equipe, callback) {
-        return db.query('INSERT INTO equipe(nomEquipe, dresseur, pokemon, capacite1, capacite2) VALUES (?, ?, ?, ?)',
+        return db.query('INSERT INTO equipe(nomEquipe, dresseur, pokemon, capacite1, capacite2) VALUES (?, ?, ?, ?, ?)',
             [Equipe.nomEquipe, Equipe.dresseur, Equipe.pokemon, Equipe.capacite1, Equipe.capacite2], callback);
     }
     ,
