@@ -130,7 +130,7 @@ INSERT INTO `pokemon` (`idPokemon`, `nom`, `type`, `pv`, `atk`, `def`, `vit`) VA
 ALTER TABLE `equipe`
   ADD CONSTRAINT `FK_capacite1` FOREIGN KEY (`capacite1`) REFERENCES `capacite` (`idCapacite`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_capacite2` FOREIGN KEY (`capacite2`) REFERENCES `capacite` (`idCapacite`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_dresseur` FOREIGN KEY (`dresseur`) REFERENCES `dresseur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_dresseurs` FOREIGN KEY (`dresseurs`) REFERENCES `dresseurs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_pokemon` FOREIGN KEY (`pokemon`) REFERENCES `pokemon` (`idPokemon`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
