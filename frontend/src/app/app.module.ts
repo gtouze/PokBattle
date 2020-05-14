@@ -15,6 +15,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { AddAbilitiesComponent } from './add-abilities/add-abilities.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -24,7 +29,8 @@ import { MatSortModule } from '@angular/material/sort';
     AuthpageComponent,
     RegisterpageComponent,
     HomeComponent,
-    PokePageComponent
+    PokePageComponent,
+    AddAbilitiesComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,11 @@ import { MatSortModule } from '@angular/material/sort';
     MatFormFieldModule,
     MatTableModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    MatStepperModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatGridListModule
   ],
   providers: [/*authInterceptorProviders*/],
   bootstrap: [AppComponent]

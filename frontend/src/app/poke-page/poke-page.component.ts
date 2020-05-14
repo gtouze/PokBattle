@@ -16,6 +16,7 @@ export class PokePageComponent implements OnInit {
   allPokemons: Pokemon[];
   dataSource: MatTableDataSource<Pokemon>;
   displayedColumns: string[] = ['idPokemon', 'nom', 'type', 'pv', 'atk', 'def', 'vit'];
+  selectedPoke: string;
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -37,5 +38,10 @@ export class PokePageComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  selectPoke(pokeId: string) {
+    this.selectedPoke = pokeId;
+    console.log('selected pokemon\'s id = ' + this.selectedPoke);
   }
 }
