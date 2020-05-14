@@ -41,7 +41,10 @@ export class PokePageComponent implements OnInit {
   loadAllNomEquipe() {
     this.equipeService.getAllEquipe().subscribe((equipes: Equipe[]) => {
       for (const team of equipes) {
-        this.nomEquipeList.push(team.nomEquipe);
+        // Si équipe pas déjà présente
+        if (this.nomEquipeList.indexOf(team.nomEquipe) === -1) {
+          this.nomEquipeList.push(team.nomEquipe);
+        }
       }
       this.nomEquipeList.sort();
     }, (err) => {
