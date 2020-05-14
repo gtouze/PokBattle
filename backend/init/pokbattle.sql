@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  jeu. 14 mai 2020 à 09:18
+-- Généré le :  jeu. 14 mai 2020 à 21:20
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `capacite` (
   `precisionCapacite` int(11) NOT NULL,
   `type` varchar(10) NOT NULL,
   PRIMARY KEY (`idCapacite`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -55,6 +55,13 @@ CREATE TABLE IF NOT EXISTS `dresseur` (
   UNIQUE KEY `pseudo` (`pseudo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `dresseur`
+--
+
+INSERT INTO `dresseur` (`id`, `pseudo`, `password`, `description`, `sexe`) VALUES
+(1, 'Coblestone', '', '', 'M');
+
 -- --------------------------------------------------------
 
 --
@@ -63,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `dresseur` (
 
 DROP TABLE IF EXISTS `equipe`;
 CREATE TABLE IF NOT EXISTS `equipe` (
-  `idEquipe` int(11) NOT NULL,
+  `idEquipe` int(11) NOT NULL AUTO_INCREMENT,
   `nomEquipe` varchar(40) NOT NULL,
   `dresseur` int(11) NOT NULL,
   `pokemon` int(11) NOT NULL,
@@ -74,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `equipe` (
   KEY `FK_pokemon` (`pokemon`),
   KEY `FK_capacite1` (`capacite1`),
   KEY `FK_capacite2` (`capacite2`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
