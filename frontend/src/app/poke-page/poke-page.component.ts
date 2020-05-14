@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PokemonService } from '../_services/pokemon.services';
+import { PokemonService } from '../_webservices/pokemon.services';
 import { MatTableDataSource } from '@angular/material/table';
-import { Pokemon } from '../classes/pokemon';
+import { Pokemon } from '../models/pokemon.model';
 import { MatSort } from '@angular/material/sort';
+import { EquipeService } from '../_webservices/equipe.services';
+import { Equipe } from '../models/equipe.model';
 
 @Component({
   selector: 'app-poke-page',
@@ -14,13 +16,16 @@ export class PokePageComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   allPokemons: Pokemon[];
+  allEquipes: Equipe[];
   dataSource: MatTableDataSource<Pokemon>;
+  equipeData: MatTableDataSource<Equipe>;
   displayedColumns: string[] = ['idPokemon', 'nom', 'type', 'pv', 'atk', 'def', 'vit'];
   selectedPoke: string;
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService, private equipeService: EquipeService) { }
 
   ngOnInit(): void {
+    this.loadAllTeams();
     this.loadAllPokemons();
   }
 
@@ -32,7 +37,16 @@ export class PokePageComponent implements OnInit {
     }, (err) => {
       console.log(err);
     });
+  }
 
+  loadAllTeams() {//TODO
+/*    this.equipeService.getAllEquipe().subscribe((equipes: Equipe[]) => {
+      this.allEquipes = equipes;
+      this.equipeData = new MatTableDataSource(this.allEquipes);
+      this.equipeData.sort = this.sort;
+    }, (err) => {
+      console.log(err);
+    });*/
   }
 
   applyFilter(event: Event) {

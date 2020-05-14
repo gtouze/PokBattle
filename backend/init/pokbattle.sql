@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  jeu. 07 mai 2020 à 14:46
+-- Généré le :  jeu. 14 mai 2020 à 09:18
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `dresseur` (
 DROP TABLE IF EXISTS `equipe`;
 CREATE TABLE IF NOT EXISTS `equipe` (
   `idEquipe` int(11) NOT NULL,
+  `nomEquipe` varchar(40) NOT NULL,
   `dresseur` int(11) NOT NULL,
   `pokemon` int(11) NOT NULL,
   `capacite1` int(11) NOT NULL,

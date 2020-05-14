@@ -24,7 +24,6 @@ export class AddAbilitiesComponent implements OnInit {
 
   onPuissanceChange(event: MatSliderChange) {
     this.precision = 150 - this.puissance;
-
   }
 
   onPrecisionChange(event: MatSliderChange) {
