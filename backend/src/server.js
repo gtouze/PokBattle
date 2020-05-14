@@ -1,9 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
 
 var app = require('./app');
+
 var port = process.env.PORT || 3000;
+
 require('./routes/auth.routes')(app);
 
 var server = app.listen(port, function() {
@@ -11,12 +12,6 @@ var server = app.listen(port, function() {
     const all_routes = require('express-list-endpoints');
     console.log(all_routes(app));
 });
-
-var corsOptions = {
-    origin: "http://localhost:4200/"
-};
-
-//app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
