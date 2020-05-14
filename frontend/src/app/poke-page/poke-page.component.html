@@ -1,6 +1,22 @@
 <mat-horizontal-stepper [linear]="true">
   <mat-step label="Equipe">
-    <p>Le pokemon que tu vas capturer fera parti de quelle équipe?</p>
+    <div *ngIf="nomEquipeList.length > 0">
+      <p>Veux tu ajouter un pokémon à une équipe déjà existante? Dans ce cas tu peux renseigner le nom de l'équipe ci-dessous.</p>
+      <mat-form-field appearance="fill">
+        <mat-label>Nom de l'équipe</mat-label>
+        <mat-select>
+            <mat-option value="option" *ngFor="let nomEquipe of nomEquipeList">{{nomEquipe}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>Si tu souhaites créer une nouvelle équipe par contre, il faut renseigner le champs ci-dessous.</p>
+    </div>
+    <div *ngIf="nomEquipeList.length == 0">
+      <p>Veuillez indiquer le nom de l'équipe que vous souhaitez créer ci-dessous.</p>
+    </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Nom de l'équipe</mat-label>
+      <input matInput>
+    </mat-form-field>
   </mat-step>
   <mat-step label="Pokemon">
     <mat-form-field>

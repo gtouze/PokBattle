@@ -16,16 +16,15 @@ export class PokePageComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   allPokemons: Pokemon[];
-  allEquipes: Equipe[];
   dataSource: MatTableDataSource<Pokemon>;
-  equipeData: MatTableDataSource<Equipe>;
   displayedColumns: string[] = ['idPokemon', 'nom', 'type', 'pv', 'atk', 'def', 'vit'];
   selectedPoke: string;
+  nomEquipeList = [];
 
   constructor(private pokemonService: PokemonService, private equipeService: EquipeService) { }
 
   ngOnInit(): void {
-    this.loadAllTeams();
+    this.loadAllNomEquipe();
     this.loadAllPokemons();
   }
 
@@ -39,14 +38,15 @@ export class PokePageComponent implements OnInit {
     });
   }
 
-  loadAllTeams() {//TODO
-/*    this.equipeService.getAllEquipe().subscribe((equipes: Equipe[]) => {
-      this.allEquipes = equipes;
-      this.equipeData = new MatTableDataSource(this.allEquipes);
-      this.equipeData.sort = this.sort;
+  loadAllNomEquipe() {
+    this.equipeService.getAllEquipe().subscribe((equipes: Equipe[]) => {
+      for (const team of equipes) {
+        this.nomEquipeList.push(team.nomEquipe);
+      }
+      this.nomEquipeList.sort();
     }, (err) => {
       console.log(err);
-    });*/
+    });
   }
 
   applyFilter(event: Event) {
