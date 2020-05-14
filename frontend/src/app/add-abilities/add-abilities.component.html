@@ -1,0 +1,28 @@
+<mat-form-field appearance="fill">
+  <mat-label>Nom</mat-label>
+  <input matInput>
+</mat-form-field>
+<br>
+
+<mat-form-field appearance="fill">
+  <mat-label>Type</mat-label>
+  <mat-select>
+      <mat-option value="option">Eau</mat-option>
+      <mat-option value="option">Feu</mat-option>
+      <mat-option value="option">Plante</mat-option>
+  </mat-select>
+</mat-form-field>
+<br/>
+
+<p>Puissance: {{puissance}}</p>
+<mat-slider thumbLabel step="1" tickInterval="25"
+            [min]="MIN_PUISSANCE" [max]="MAX_PUISSANCE"
+            [(ngModel)]="puissance" (change)="onPuissanceChange($event)"
+            class="sliderPuissance"></mat-slider>
+<br/>
+
+<p>Précision: {{precision}}</p>
+<mat-slider thumbLabel step="1" tickInterval="25"
+            [min]="MIN_PRECISION" [max]="MAX_PRECISION"
+            [(ngModel)]="precision" (change)="onPrecisionChange($event)"
+            class="sliderPrecision"></mat-slider>

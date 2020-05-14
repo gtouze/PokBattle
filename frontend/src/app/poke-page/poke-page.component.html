@@ -1,0 +1,72 @@
+<mat-horizontal-stepper [linear]="true">
+  <mat-step label="Equipe">
+    <p>Le pokemon que tu vas capturer fera parti de quelle équipe?</p>
+  </mat-step>
+  <mat-step label="Pokemon">
+    <mat-form-field>
+      <mat-label>Filtre</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Tortank">
+    </mat-form-field>
+    
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="width: 100%">
+      <!-- Colonne Id -->
+      <ng-container matColumnDef="idPokemon">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let pokemon"><img src="../../assets/pokeImg/{{pokemon.nom}}.png" style="width: 8em;"></td>
+      </ng-container>
+
+      <!-- Colonne Nom -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.nom}} </td>
+      </ng-container>
+
+      <!-- Colonne Type -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.type}} </td>
+      </ng-container>
+
+      <!-- Colonne PV -->
+      <ng-container matColumnDef="pv">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PV </th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.pv}} </td>
+      </ng-container>
+
+      <!-- Colonne Attaque -->
+      <ng-container matColumnDef="atk">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Atk </th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.atk}} </td>
+      </ng-container>
+
+      <!-- Colonne Défense -->
+      <ng-container matColumnDef="def">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Def </th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.def}} </td>
+      </ng-container>
+
+      <!-- Colonne Vitesse -->
+      <ng-container matColumnDef="vit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vit </th>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.vit}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+          [ngClass]="{'active': selectedPoke === row.idPokemon}"
+          (click)="selectPoke(row.idPokemon)"></tr>
+    </table>
+  </mat-step>
+  <mat-step label="Capacité">
+    Quelle capacité ton pokemon devrait il posséder?
+    <mat-grid-list cols="2" rowHeight="1:1">
+      <mat-grid-tile>
+        <app-add-abilities></app-add-abilities>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <app-add-abilities></app-add-abilities>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-step>
+</mat-horizontal-stepper>
+

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const Dresseur = require('./Dresseur');
+const Equipe = require('./Equipe');
 router.use(bodyParser.json());
 
 router.get('/', function (req, res) {
-    Dresseur.getDresseurs(function(err, rows) {
+    Equipe.getEquipes(function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {
@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:id', function (req, res) {
-    Dresseur.getDresseur(req.params.id, function(err, rows) {
+    Equipe.getEquipe(req.params.id, function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {
@@ -25,7 +25,7 @@ router.get('/:id', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    Dresseur.createDresseur(req.body, function(err, rows) {
+    Equipe.createEquipe(req.body, function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {
@@ -35,7 +35,7 @@ router.post('/', function (req, res) {
 });
 
 router.put('/:id', function (req, res) {
-    Dresseur.updateDresseur([req.body, req.params.id], function(err, rows) {
+    Equipe.updateEquipe([req.body, req.params.id], function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {
@@ -45,7 +45,7 @@ router.put('/:id', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
-    Dresseur.deleteDresseur(req.params.id, function(err, rows) {
+    Equipe.deleteEquipe(req.params.id, function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {
