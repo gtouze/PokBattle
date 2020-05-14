@@ -22,6 +22,9 @@ SET time_zone = "+00:00";
 -- Base de données :  `pokbattle`
 --
 
+create database pokbattle;
+use pokbattle;
+
 -- --------------------------------------------------------
 
 --
@@ -43,14 +46,13 @@ CREATE TABLE IF NOT EXISTS `capacite` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `dresseur`
+-- Structure de la table `dresseurs`
 --
-
-DROP TABLE IF EXISTS `dresseur`;
-CREATE TABLE IF NOT EXISTS `dresseur` (
+DROP TABLE IF EXISTS `dresseurs`;
+CREATE TABLE IF NOT EXISTS `dresseurs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(150) NOT NULL,
   `description` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -72,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `pokemon` (
   `vit` int(11) NOT NULL,
   `capacite1` int(11) NOT NULL,
   `capacite2` int(11) DEFAULT NULL,
-  `dresseur_fk` int(11) NOT NULL,
+  `dresseurs_fk` int(11) NOT NULL,
   PRIMARY KEY (`idPokemon`),
-  KEY `dresseur_fk` (`dresseur_fk`)
+  KEY `dresseurs_fk` (`dresseurs_fk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -91,7 +93,7 @@ ALTER TABLE `capacite`
 -- Contraintes pour la table `pokemon`
 --
 ALTER TABLE `pokemon`
-  ADD CONSTRAINT `pokemon_ibfk_1` FOREIGN KEY (`dresseur_fk`) REFERENCES `dresseur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pokemon_ibfk_1` FOREIGN KEY (`dresseurs_fk`) REFERENCES `dresseurs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

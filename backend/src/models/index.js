@@ -2,13 +2,16 @@ const database = require("../db");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
-    database.database,
-    database.user,
-    database.password,
+    "pokbattle",
+    "root",
+    "admin",
   {
     host: database.host,
     dialect: "mysql",
     operatorsAliases: false,
+    define: {
+      timestamps: false
+    }
   }
 );
 
