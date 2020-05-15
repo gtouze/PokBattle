@@ -4,9 +4,10 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
     "pokbattle",
     "root",
-    "admin",
+    "",
   {
-    host: database.host,
+    port: '3308',
+    host: 'localhost',
     dialect: "mysql",
     operatorsAliases: false,
     define: {

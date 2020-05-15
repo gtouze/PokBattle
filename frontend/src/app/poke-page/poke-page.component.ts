@@ -79,12 +79,11 @@ export class PokePageComponent implements OnInit {
     }
 
     if (this.capacite2Nom !== '') {
-      this.equipeService.postEquipe(new Equipe(null, selectedName, 1,
+      this.equipeService.postEquipe(new Equipe(null, selectedName, 12,
         this.selectedPoke, this.createdCapacite1Id, this.createdCapacite2Id)).subscribe((capa2: any) => {
       }, (err) => { console.log(err); });
     } else {
-      console.log(selectedName + ' 1 ' + this.selectedPoke + ' ' + this.createdCapacite1Id);
-      this.equipeService.postEquipe(new Equipe(null, selectedName, 1,
+      this.equipeService.postEquipe(new Equipe(null, selectedName, 12,
         this.selectedPoke, this.createdCapacite1Id, null)).subscribe((capa2: any) => {
       }, (err) => { console.log(err); });
     }

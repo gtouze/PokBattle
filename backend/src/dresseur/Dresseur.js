@@ -10,13 +10,13 @@ const Dresseur = {
     }
     ,
     createDresseur: function (Dresseur, callback) {
-        return db.query('INSERT INTO dresseur(pseudo, password, description, sexe) VALUES (?, ?, ?, ?)',
-            [Dresseur.pseudo, Dresseur.password, Dresseur.description, Dresseur.sexe], callback);
+        return db.query('INSERT INTO dresseur(username, password, description, sexe) VALUES (?, ?, ?, ?)',
+            [Dresseur.username, Dresseur.password, Dresseur.description, Dresseur.sexe], callback);
     }
     ,
     updateDresseur: function (Dresseur, callback) {
-        return db.query('UPDATE dresseur SET pseudo=?, password=?, description=?, sexe=? WHERE id=?',
-            [Dresseur[0].pseudo, Dresseur[0].password, Dresseur[0].description, Dresseur[0].sexe, Dresseur[1]], callback);
+        return db.query('UPDATE dresseur SET username=?, password=?, description=?, sexe=? WHERE id=?',
+            [Dresseur[0].username, Dresseur[0].password, Dresseur[0].description, Dresseur[0].sexe, Dresseur[1]], callback);
     }
     ,
     deleteDresseur: function (id, callback) {
