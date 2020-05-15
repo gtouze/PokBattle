@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const cors = require("cors");
+app.use(cors());
 
 const DresseurController = require('./dresseur/DresseurController');
 const CapaciteController = require('./capacite/CapaciteController');

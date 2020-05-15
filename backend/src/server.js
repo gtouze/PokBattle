@@ -5,12 +5,6 @@ const cors = require("cors");
 var app = require('./app');
 var port = process.env.PORT || 3000;
 
-var corsOptions = {
-  origin: "http://localhost:3000"
-};
-
-app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
