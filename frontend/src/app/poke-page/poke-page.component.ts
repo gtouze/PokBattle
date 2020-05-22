@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PokemonService } from '../_webservices/pokemon.services';
+import { PokemonService } from '../_webservices/pokemon.webservice';
 import { MatTableDataSource } from '@angular/material/table';
 import { Pokemon } from '../models/pokemon.model';
 import { MatSort } from '@angular/material/sort';
-import { EquipeService } from '../_webservices/equipe.services';
+import { EquipeService } from '../_webservices/equipe.webservice';
 import { Equipe } from '../models/equipe.model';
-import { CapaciteService } from '../_webservices/capacite.services';
+import { CapaciteService } from '../_webservices/capacite.webservice';
 import { Capacite } from '../models/capacite.model';
 
 @Component({
@@ -20,7 +20,7 @@ export class PokePageComponent implements OnInit {
   allPokemons: Pokemon[];
   dataSource: MatTableDataSource<Pokemon>;
   displayedColumns: string[] = ['idPokemon', 'nom', 'type', 'pv', 'atk', 'def', 'vit'];
-  selectedPoke= 0;
+  selectedPoke = 0;
   nomEquipeList = [];
 
   selectedEquipe1 = '';
@@ -46,17 +46,17 @@ export class PokePageComponent implements OnInit {
     this.loadAllPokemons();
   }
 
-  loadAllPokemons() {
+  private loadAllPokemons() {
     this.pokemonService.getAllPokemon().subscribe((pokemons: Pokemon[]) => {
       this.allPokemons = pokemons;
       this.dataSource = new MatTableDataSource(this.allPokemons);
       this.dataSource.sort = this.sort;
     }, (err) => {
-      console.log(err);
+      console.error(err);
     });
   }
 
-  loadAllNomEquipe() {
+  private loadAllNomEquipe() {
     this.equipeService.getAllEquipe().subscribe((equipes: Equipe[]) => {
       for (const team of equipes) {
         // Si équipe pas déjà présente
@@ -66,11 +66,11 @@ export class PokePageComponent implements OnInit {
       }
       this.nomEquipeList.sort();
     }, (err) => {
-      console.log(err);
+      console.error(err);
     });
   }
 
-  createTeam() { // TODO Recuperation du dresseur id
+  private createTeam() { // TODO Recuperation du dresseur id
     let selectedName;
     if (this.selectedEquipe2 === '') {
       selectedName = this.selectedEquipe1;
@@ -81,11 +81,11 @@ export class PokePageComponent implements OnInit {
     if (this.capacite2Nom !== '') {
       this.equipeService.postEquipe(new Equipe(null, selectedName, 12,
         this.selectedPoke, this.createdCapacite1Id, this.createdCapacite2Id)).subscribe((capa2: any) => {
-      }, (err) => { console.log(err); });
+      }, (err) => { console.error(err); });
     } else {
       this.equipeService.postEquipe(new Equipe(null, selectedName, 12,
         this.selectedPoke, this.createdCapacite1Id, null)).subscribe((capa2: any) => {
-      }, (err) => { console.log(err); });
+      }, (err) => { console.error(err); });
     }
   }
 
@@ -101,11 +101,11 @@ export class PokePageComponent implements OnInit {
             this.capacite2Prec, this.capacite2Type)).subscribe((capa2: any) => {
               this.createdCapacite2Id = capa2.insertId;
               this.createTeam();
-          }, (err) => { console.log(err); });
+          }, (err) => { console.error(err); });
         } else {
           this.createTeam();
         }
-    }, (err) => { console.log(err); });
+    }, (err) => { console.error(err); });
   }
 
   applyFilter(event: Event) {

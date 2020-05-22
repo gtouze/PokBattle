@@ -20,6 +20,7 @@ import { AddAbilitiesComponent } from './add-abilities/add-abilities.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { AffichageEquipeComponent } from './affichage-equipe/affichage-equipe.component';
 
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -30,7 +31,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     RegisterpageComponent,
     HomeComponent,
     PokePageComponent,
-    AddAbilitiesComponent
+    AddAbilitiesComponent,
+    AffichageEquipeComponent
   ],
   imports: [
     BrowserModule,
