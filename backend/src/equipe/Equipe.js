@@ -5,8 +5,8 @@ const Equipe = {
         return db.query('SELECT * from equipe', callback);
     }
     ,
-    getEquipe: function(idEquipe, callback) {
-        return db.query('SELECT * from equipe WHERE idEquipe=?', idEquipe, callback);
+    getEquipesDresseur: function(dresseurId, callback) {
+        return db.query('SELECT * from equipe WHERE dresseur=?', dresseurId, callback);
     }
     ,
     createEquipe: function (Equipe, callback) {

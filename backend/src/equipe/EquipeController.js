@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:id', function (req, res) {
-    Equipe.getEquipe(req.params.id, function(err, rows) {
+    Equipe.getEquipesDresseur(req.params.id, function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {
