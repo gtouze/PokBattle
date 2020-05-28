@@ -1,20 +1,53 @@
 <div *ngIf="pokemon">
-    <mat-card class="pokemon-card" style="margin:2em;">
+    <mat-card class="pokemon-card" style="margin:2em;" [class.mat-elevation-z6]="true">
         <mat-card-content>
-            <mat-grid-list cols="5" rowHeight="2:1">
-                <mat-grid-tile [colspan]="1" [rowspan]="2">
-                    <img src="../../../assets/pokeImg/{{pokemon[0].nom}}.png" style="width: 8em;">
+            <mat-grid-list cols="5" rowHeight="3:1">
+                <mat-grid-tile [colspan]="1" [rowspan]="4">
+                    <img src="../../../assets/pokeImg/{{pokemon.nom}}.png" style="width: 100%">
+                </mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <h1>{{pokemon.nom}}</h1>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
-                    <h1>{{pokemon[0].nom}}</h1>
+                    <img src="../../../assets/types/{{pokemon.type}}.png" style="width: 8em;">
                 </mat-grid-tile>
-                <mat-grid-tile [colspan]="2" [rowspan]="1">
-                    <img src="../../../assets/types/{{pokemon[0].type}}.png" style="width: 8em;">
+
+                <mat-grid-tile [colspan]="1" [rowspan]="1">Pv: {{pokemon.pv}}</mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">Atk: {{pokemon.atk}}</mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">Def: {{pokemon.def}}</mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">Vit: {{pokemon.vit}}</mat-grid-tile>
+
+                <mat-grid-tile [colspan]="2" [rowspan]="2" *ngIf="capacite1">
+                    <mat-card class="capacite-card" [ngClass]="{'eau' : capacite1.type == 'Eau',
+                                                                'feu' : capacite1.type == 'Feu',
+                                                                'plante' : capacite1.type == 'Plante',
+                                                                'normal' : capacite1.type == 'Normal'}"
+                                                                [class.mat-elevation-z4]="true">
+                        <mat-card-title>{{capacite1.nom}}</mat-card-title>
+                        <mat-card-content>
+                            <mat-grid-list cols="2" rowHeight="4:1">
+                                <mat-grid-tile [colspan]="2">Puissance: {{capacite1.puissance}}</mat-grid-tile>
+                                <mat-grid-tile [colspan]="2">Précision: {{capacite1.precisionCapacite}}%</mat-grid-tile>
+                            </mat-grid-list>
+                        </mat-card-content>
+                    </mat-card>
                 </mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1">Pv: {{pokemon[0].pv}}</mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1">Atk: {{pokemon[0].atk}}</mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1">Def: {{pokemon[0].def}}</mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1">Vit: {{pokemon[0].vit}}</mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="2" *ngIf="capacite2">
+                    <mat-card class="capacite-card" [ngClass]="{'eau' : capacite2.type == 'Eau',
+                                                                'feu' : capacite2.type == 'Feu',
+                                                                'plante' : capacite2.type == 'Plante',
+                                                                'normal' : capacite2.type == 'Normal'}"
+                                                                [class.mat-elevation-z4]="true">
+                        <mat-card-title>{{capacite2.nom}}</mat-card-title>
+                        <mat-card-content>
+                            <mat-grid-list cols="2" rowHeight="4:1">
+                                <mat-grid-tile [colspan]="2">Puissance: {{capacite2.puissance}}</mat-grid-tile>
+                                <mat-grid-tile [colspan]="2">Précision: {{capacite2.precisionCapacite}}%</mat-grid-tile>
+                            </mat-grid-list>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
             </mat-grid-list>
             
         </mat-card-content>

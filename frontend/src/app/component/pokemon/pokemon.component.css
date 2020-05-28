@@ -1,0 +1,19 @@
+.eau {
+    background-color: #5090D6;
+}
+
+.feu {
+    background-color: #ff9d55;
+}
+
+.plante {
+    background-color: #63BA5A;
+}
+
+.normal {
+    background-color: #919AA2;
+}
+
+.capacite-card {
+    min-width: 200px;
+}
