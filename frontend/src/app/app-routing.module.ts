@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegisterpageComponent } from './registerpage/registerpage.component';
-import { AuthpageComponent } from './authpage/authpage.component';
-import { HomeComponent } from './home/home.component';
-import { PokePageComponent } from './poke-page/poke-page.component';
-import { AffichageEquipeComponent } from './affichage-equipe/affichage-equipe.component';
+import { RegisterpageComponent } from './page/registerpage/registerpage.component';
+import { AuthpageComponent } from './page/authpage/authpage.component';
+import { HomeComponent } from './page/home/home.component';
+import { PokePageComponent } from './page/poke-page/poke-page.component';
+import { AffichageEquipeComponent } from './page/affichage-equipe/affichage-equipe.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

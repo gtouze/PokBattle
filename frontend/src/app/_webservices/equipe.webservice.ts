@@ -22,8 +22,8 @@ export class EquipeService {
     return this.http.get<Equipe[]>(this.url, this.httpOptions);
   }
 
-  getEquipeById(equipeId: string) {
-    return this.http.get<Equipe>(this.url + '/' + equipeId);
+  getEquipesByDresseurId(dresseurId: string) {
+    return this.http.get<Equipe[]>(this.url + '/' + dresseurId);
   }
 
   postEquipe(equipe: Equipe): Observable<Equipe> {

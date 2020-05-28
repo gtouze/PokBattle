@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PokemonService } from '../_webservices/pokemon.webservice';
+import { PokemonService } from '../../_webservices/pokemon.webservice';
 import { MatTableDataSource } from '@angular/material/table';
-import { Pokemon } from '../models/pokemon.model';
+import { Pokemon } from '../../models/pokemon.model';
 import { MatSort } from '@angular/material/sort';
-import { EquipeService } from '../_webservices/equipe.webservice';
-import { Equipe } from '../models/equipe.model';
-import { CapaciteService } from '../_webservices/capacite.webservice';
-import { Capacite } from '../models/capacite.model';
+import { EquipeService } from '../../_webservices/equipe.webservice';
+import { Equipe } from '../../models/equipe.model';
+import { CapaciteService } from '../../_webservices/capacite.webservice';
+import { Capacite } from '../../models/capacite.model';
 
 @Component({
   selector: 'app-poke-page',
