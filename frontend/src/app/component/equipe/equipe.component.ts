@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
@@ -7,15 +7,12 @@ import { TokenStorageService } from 'src/app/_services/token-storage.service';
   styleUrls: ['./equipe.component.css']
 })
 export class EquipeComponent implements OnInit {
-  dresseurId: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  @Input() equipe: string;
+
+  constructor() { }
 
   ngOnInit(): void {
-    //const user = this.tokenStorageService.getUser();
-    //this.dresseurId = user.username;
-
-    //console.log('id dresseur: ' + this.dresseurId);
   }
 
 }

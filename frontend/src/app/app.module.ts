@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
 import { AddAbilitiesComponent } from './component/add-abilities/add-abilities.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,6 +23,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AffichageEquipeComponent } from './page/affichage-equipe/affichage-equipe.component';
 import { EquipeComponent } from './component/equipe/equipe.component';
+import { PokemonComponent } from './component/pokemon/pokemon.component';
 
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -34,7 +36,8 @@ import { EquipeComponent } from './component/equipe/equipe.component';
     PokePageComponent,
     AddAbilitiesComponent,
     AffichageEquipeComponent,
-    EquipeComponent
+    EquipeComponent,
+    PokemonComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { EquipeComponent } from './component/equipe/equipe.component';
     MatTableModule,
     MatInputModule,
     MatSortModule,
+    MatCardModule,
     MatStepperModule,
     MatSelectModule,
     MatSliderModule,

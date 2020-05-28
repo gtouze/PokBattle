@@ -7,6 +7,7 @@ import { EquipeService } from '../../_webservices/equipe.webservice';
 import { Equipe } from '../../models/equipe.model';
 import { CapaciteService } from '../../_webservices/capacite.webservice';
 import { Capacite } from '../../models/capacite.model';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
   selector: 'app-poke-page',
@@ -39,7 +40,8 @@ export class PokePageComponent implements OnInit {
   createdCapacite1Id: number;
   createdCapacite2Id: number;
 
-  constructor(private pokemonService: PokemonService, private equipeService: EquipeService, private capaciteService: CapaciteService) { }
+  constructor(private tokenStorageService: TokenStorageService, private pokemonService: PokemonService,
+              private equipeService: EquipeService, private capaciteService: CapaciteService) { }
 
   ngOnInit(): void {
     this.loadAllNomEquipe();
@@ -70,7 +72,7 @@ export class PokePageComponent implements OnInit {
     });
   }
 
-  private createTeam() { // TODO Recuperation du dresseur id
+  private createTeam() {
     let selectedName;
     if (this.selectedEquipe2 === '') {
       selectedName = this.selectedEquipe1;
@@ -79,11 +81,11 @@ export class PokePageComponent implements OnInit {
     }
 
     if (this.capacite2Nom !== '') {
-      this.equipeService.postEquipe(new Equipe(null, selectedName, 12,
+      this.equipeService.postEquipe(new Equipe(null, selectedName, this.tokenStorageService.getUser().id,
         this.selectedPoke, this.createdCapacite1Id, this.createdCapacite2Id)).subscribe((capa2: any) => {
       }, (err) => { console.error(err); });
     } else {
-      this.equipeService.postEquipe(new Equipe(null, selectedName, 12,
+      this.equipeService.postEquipe(new Equipe(null, selectedName, this.tokenStorageService.getUser().id,
         this.selectedPoke, this.createdCapacite1Id, null)).subscribe((capa2: any) => {
       }, (err) => { console.error(err); });
     }

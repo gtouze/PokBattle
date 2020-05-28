@@ -1,2 +1,8 @@
-<p>affichage-equipe works!</p>
-<app-equipe></app-equipe>
+<mat-form-field appearance="fill">
+  <mat-label>Nom d'équipe</mat-label>
+  <mat-select [(value)]="selectedName" (selectionChange)="updateSelectedTeam()">
+      <mat-option value="{{nomEquipe}}" *ngFor="let nomEquipe of nomEquipeList">{{nomEquipe}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<app-equipe *ngIf="selectedName.length > 0" [equipe]="selectedTeam"></app-equipe>

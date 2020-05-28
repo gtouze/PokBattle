@@ -1,0 +1,23 @@
+<div *ngIf="pokemon">
+    <mat-card class="pokemon-card" style="margin:2em;">
+        <mat-card-content>
+            <mat-grid-list cols="5" rowHeight="2:1">
+                <mat-grid-tile [colspan]="1" [rowspan]="2">
+                    <img src="../../../assets/pokeImg/{{pokemon[0].nom}}.png" style="width: 8em;">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <h1>{{pokemon[0].nom}}</h1>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <img src="../../../assets/types/{{pokemon[0].type}}.png" style="width: 8em;">
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">Pv: {{pokemon[0].pv}}</mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">Atk: {{pokemon[0].atk}}</mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">Def: {{pokemon[0].def}}</mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">Vit: {{pokemon[0].vit}}</mat-grid-tile>
+            </mat-grid-list>
+            
+        </mat-card-content>
+    </mat-card>
+
+</div>
