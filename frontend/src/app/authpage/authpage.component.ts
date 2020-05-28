@@ -20,7 +20,7 @@ export class AuthpageComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
+      //this.roles = this.tokenStorage.getUser().roles;
     }
   }
 
@@ -32,7 +32,7 @@ export class AuthpageComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
+       //this.roles = this.tokenStorage.getUser().roles;
         this.reloadPage();
       },
       err => {
