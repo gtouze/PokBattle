@@ -77,13 +77,15 @@
     Quelle capacité ton pokemon devrait il posséder?
     <mat-grid-list cols="2" rowHeight="1:1">
       <mat-grid-tile>
-        <app-add-abilities (detailCapacite)="changeCapacite1($event)"></app-add-abilities>
+        <app-add-abilities [initialValue]="abilityInitValue"
+                           (detailCapacite)="changeCapacite1($event)"></app-add-abilities>
       </mat-grid-tile>
       <mat-grid-tile>
-        <app-add-abilities (detailCapacite)="changeCapacite2($event)"></app-add-abilities>
+        <app-add-abilities [initialValue]="abilityInitValue"
+                           (detailCapacite)="changeCapacite2($event)"></app-add-abilities>
       </mat-grid-tile>
     </mat-grid-list>
-    <button mat-button (click)="createAbilities()">Créer</button>
+    <button mat-raised-button (click)="createAbilities()">Créer</button>
   </mat-step>
 </mat-horizontal-stepper>
 

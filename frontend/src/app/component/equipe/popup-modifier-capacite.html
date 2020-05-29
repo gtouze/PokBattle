@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Modifier ou supprimer la capacitée</h1>
+<div mat-dialog-content>
+  <app-add-abilities [initialValue]="abilityInitValue"
+                     (detailCapacite)="changeCapacite($event)"></app-add-abilities>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()" cdkFocusInitial>Retour</button>
+  <button mat-raised-button (click)="onModifyClick()">Modifier</button>
+  <button mat-raised-button (click)="onRemoveClick()">Supprimer</button>
+</div>

@@ -20,4 +20,10 @@ export class CapaciteService {
   postCapacite(capacite: Capacite): Observable<Capacite> {
     return this.http.post<Capacite>(this.url, capacite);
   }
+  putCapacite(capacite: Capacite): Observable<Capacite> {
+    return this.http.put<Capacite>(this.url + '/' + capacite.idCapacite, capacite);
+  }
+  deleteCapacite(capaciteId: string): Observable<Capacite> {
+    return this.http.delete<Capacite>(this.url + '/' + capaciteId);
+  }
 }

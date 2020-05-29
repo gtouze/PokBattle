@@ -37,6 +37,13 @@ export class PokePageComponent implements OnInit {
   capacite2Puiss = 0;
   capacite2Prec = 0;
 
+  abilityInitValue = {
+    puissance: 100,
+    precision: 50,
+    selectedNom: '',
+    selectedType: ''
+  };
+
   createdCapacite1Id: number;
   createdCapacite2Id: number;
 

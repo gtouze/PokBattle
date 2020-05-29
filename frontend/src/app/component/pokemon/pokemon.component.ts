@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { PokemonService } from 'src/app/_webservices/pokemon.webservice';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { Capacite } from 'src/app/models/capacite.model';
@@ -12,6 +12,8 @@ import { CapaciteService } from 'src/app/_webservices/capacite.webservice';
 export class PokemonComponent implements OnInit {
 
   @Input() team: any;
+  @Output() clickCapacite1 = new EventEmitter<Capacite>();
+  @Output() clickCapacite2 = new EventEmitter<Capacite>();
 
   pokemon: Pokemon;
   capacite1: Capacite;
@@ -37,6 +39,14 @@ export class PokemonComponent implements OnInit {
         console.error(err);
       });
     }
+  }
+
+  clickCapa1() {
+    this.clickCapacite1.emit(this.capacite1);
+  }
+
+  clickCapa2() {
+    this.clickCapacite2.emit(this.capacite2);
   }
 
 }

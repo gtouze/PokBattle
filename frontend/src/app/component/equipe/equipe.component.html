@@ -1,1 +1,5 @@
-<app-pokemon [team]="pokemon" *ngFor="let pokemon of equipe"></app-pokemon>
+<app-pokemon [team]="pokemon"
+             (clickCapacite1)="clickCapa1($event)"
+             (clickCapacite2)="clickCapa2($event)"
+             *ngFor="let pokemon of equipe">
+</app-pokemon>

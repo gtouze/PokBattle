@@ -17,13 +17,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AddAbilitiesComponent } from './component/add-abilities/add-abilities.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AffichageEquipeComponent } from './page/affichage-equipe/affichage-equipe.component';
-import { EquipeComponent } from './component/equipe/equipe.component';
+import { EquipeComponent, PopupModifierCapacite } from './component/equipe/equipe.component';
 import { PokemonComponent } from './component/pokemon/pokemon.component';
+import { MatButtonModule } from '@angular/material/button';
 
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -37,7 +39,8 @@ import { PokemonComponent } from './component/pokemon/pokemon.component';
     AddAbilitiesComponent,
     AffichageEquipeComponent,
     EquipeComponent,
-    PokemonComponent
+    PokemonComponent,
+    PopupModifierCapacite
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,9 @@ import { PokemonComponent } from './component/pokemon/pokemon.component';
     MatStepperModule,
     MatSelectModule,
     MatSliderModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [/*authInterceptorProviders*/],
   bootstrap: [AppComponent]

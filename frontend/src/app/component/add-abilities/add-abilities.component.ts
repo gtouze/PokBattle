@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
@@ -8,6 +8,7 @@ import { MatSliderChange } from '@angular/material/slider';
 })
 export class AddAbilitiesComponent implements OnInit {
 
+  @Input() initialValue: any;
   @Output() detailCapacite = new EventEmitter<any>();
 
   readonly MIN_PUISSANCE = 50;
@@ -15,15 +16,19 @@ export class AddAbilitiesComponent implements OnInit {
   readonly MIN_PRECISION = 1;
   readonly MAX_PRECISION = 100;
 
-  puissance = 100;
-  precision = 50;
-  selectedNom = '';
-  selectedType = '';
+  puissance: number;
+  precision: number;
+  selectedNom: string;
+  selectedType: string;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.puissance = this.initialValue.puissance;
+    this.precision = this.initialValue.precision;
+    this.selectedNom = this.initialValue.selectedNom;
+    this.selectedType = this.initialValue.selectedType;
   }
 
   onPuissanceChange(event: MatSliderChange) {

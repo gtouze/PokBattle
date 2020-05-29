@@ -18,7 +18,7 @@
                 <mat-grid-tile [colspan]="1" [rowspan]="1">Def: {{pokemon.def}}</mat-grid-tile>
                 <mat-grid-tile [colspan]="1" [rowspan]="1">Vit: {{pokemon.vit}}</mat-grid-tile>
 
-                <mat-grid-tile [colspan]="2" [rowspan]="2" *ngIf="capacite1">
+                <mat-grid-tile [colspan]="2" [rowspan]="2" (click)="clickCapa1()" *ngIf="capacite1">
                     <mat-card class="capacite-card" [ngClass]="{'eau' : capacite1.type == 'Eau',
                                                                 'feu' : capacite1.type == 'Feu',
                                                                 'plante' : capacite1.type == 'Plante',
@@ -33,7 +33,7 @@
                         </mat-card-content>
                     </mat-card>
                 </mat-grid-tile>
-                <mat-grid-tile [colspan]="2" [rowspan]="2" *ngIf="capacite2">
+                <mat-grid-tile [colspan]="2" [rowspan]="2" (click)="clickCapa2()" *ngIf="capacite2">
                     <mat-card class="capacite-card" [ngClass]="{'eau' : capacite2.type == 'Eau',
                                                                 'feu' : capacite2.type == 'Feu',
                                                                 'plante' : capacite2.type == 'Plante',
