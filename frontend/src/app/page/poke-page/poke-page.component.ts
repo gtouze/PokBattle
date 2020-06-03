@@ -44,6 +44,8 @@ export class PokePageComponent implements OnInit {
   ngOnInit(): void {
     this.loadAllNomEquipe();
     this.loadAllPokemons();
+
+    document.body.classList.remove('combat-bg-img');
   }
 
   private loadAllPokemons() {
@@ -130,5 +132,6 @@ export class PokePageComponent implements OnInit {
     this.capacite2Puiss = attributsCapa.puissance;
     this.capacite2Prec = attributsCapa.precision;
   }
+  
 
 }

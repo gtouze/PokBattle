@@ -14,6 +14,7 @@ export class AuthpageComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  username: string;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
@@ -21,7 +22,12 @@ export class AuthpageComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       //this.roles = this.tokenStorage.getUser().roles;
+      const user = this.tokenStorage.getUser();
+
+      this.username = user.username;
     }
+
+    document.body.classList.remove('combat-bg-img');
   }
 
   onSubmit() {

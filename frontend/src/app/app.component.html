@@ -20,6 +20,12 @@
       </li>
     </ul>
 
+    <ul class="navbar-nav mr-auto" routerLinkActive="active" *ngIf="isLoggedIn" > 
+      <li class="nav-item">
+        <a href="/combat" class="nav-link" routerLink="combat">Arène de combat</a>
+      </li>
+    </ul>
+
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
         <a href="/register" class="nav-link" routerLink="register">S'inscrire</a>

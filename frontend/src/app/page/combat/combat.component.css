@@ -1,0 +1,35 @@
+h1{
+    text-align: center;
+    padding: 10px 0 10px 0;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.col-left {
+    float: left;
+    width: 350px;
+    height: 400px;
+    padding: 50px;
+    margin-top: 15%;
+    background: rgba(255, 255, 255, 0.589);
+}
+.col-right {
+    float: right;
+    width: 350px;
+    height: 400px;
+    padding: 50px;
+    margin-top: 15%;
+    background:  rgba(255, 255, 255, 0.589);;
+}
+
+.username-d1{
+    font-weight: bold;
+    padding: .75em .75em .75em .75em;
+    background-color: rgba(0,0,0,.04);
+    margin-bottom: 25px;
+    width: 200px;
+    font-size: 16px;
+}
+

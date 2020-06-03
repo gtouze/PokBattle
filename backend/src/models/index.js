@@ -4,9 +4,9 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(
     "pokbattle",
     "root",
-    "",
+    "admin",
   {
-    port: '3308',
+    port: '3306',
     host: 'localhost',
     dialect: "mysql",
     operatorsAliases: false,

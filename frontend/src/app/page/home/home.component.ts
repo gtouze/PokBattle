@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     );
+
+    document.body.classList.remove('combat-bg-img');
   }
 
 }

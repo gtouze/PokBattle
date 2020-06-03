@@ -22,6 +22,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AffichageEquipeComponent } from './page/affichage-equipe/affichage-equipe.component';
 import { EquipeComponent } from './component/equipe/equipe.component';
+import { CombatComponent } from './page/combat/combat.component';
 
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -34,7 +35,8 @@ import { EquipeComponent } from './component/equipe/equipe.component';
     PokePageComponent,
     AddAbilitiesComponent,
     AffichageEquipeComponent,
-    EquipeComponent
+    EquipeComponent,
+    CombatComponent
   ],
   imports: [
     BrowserModule,

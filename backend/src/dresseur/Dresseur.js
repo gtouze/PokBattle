@@ -9,6 +9,10 @@ const Dresseur = {
         return db.query('SELECT * from dresseur WHERE id=?', id, callback);
     }
     ,
+    getDresseurbyUsername: function(username, callback) {
+        return db.query('SELECT * from dresseur WHERE username=?', username, callback);
+    }
+    ,
     createDresseur: function (Dresseur, callback) {
         return db.query('INSERT INTO dresseur(username, password, description, sexe) VALUES (?, ?, ?, ?)',
             [Dresseur.username, Dresseur.password, Dresseur.description, Dresseur.sexe], callback);
