@@ -1,4 +1,4 @@
-<div [hidden]="true">
+<div *ngIf="!vueCombat">
   <h1>Bienvenue dans l'arène !</h1>
   <div class="col-left" *ngIf="isLoggedIn">
     <p>Dresseur connecté :</p>
@@ -6,7 +6,7 @@
     <p>Choisissez une de vos équipe :</p>
     <mat-form-field appearance="fill">
       <mat-label>Choix de l'equipe</mat-label>
-      <mat-select [(value)]="selectedEquipe">
+      <mat-select [(value)]="selectedTeamName1" (selectionChange)="updateSelectedEquipe1()">
           <mat-option value="{{nomEquipe}}" *ngFor="let nomEquipe of nomEquipeList">{{nomEquipe}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -22,15 +22,15 @@
     <p>Equipe disponible pour ce Dresseur :</p>
     <mat-form-field appearance="fill">
       <mat-label>Choix de l'equipe</mat-label>
-      <mat-select [(value)]="selectedEquipe2">
+      <mat-select [(value)]="selectedTeamName2" (selectionChange)="updateSelectedEquipe2()">
           <mat-option #equipeD2 value="{{nomEquipe}}" *ngFor="let nomEquipe of nomEquipeListD2">{{nomEquipe}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <div class="btn-arene">
-    <button mat-raised-button class="bouton-arene">Let's battle !</button>
+    <button mat-raised-button (click)="changeVue()"class="bouton-arene">Let's battle !</button>
   </div>
 </div>
-<div [hidden]="false">
-  <app-versus></app-versus>
+<div *ngIf="vueCombat">
+  <app-versus [equipe1]="selectedEquipe1" [equipe2]="selectedEquipe2"></app-versus>
 </div>

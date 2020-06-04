@@ -46,7 +46,7 @@
       <!-- Colonne PV -->
       <ng-container matColumnDef="pv">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> PV </th>
-        <td mat-cell *matCellDef="let pokemon"> {{pokemon.pv}} </td>
+        <td mat-cell *matCellDef="let pokemon"> {{pokemon.pv * 4}} </td>
       </ng-container>
 
       <!-- Colonne Attaque -->

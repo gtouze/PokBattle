@@ -9,19 +9,19 @@ h1{
 
 .col-left {
     float: left;
-    width: 600px;
-    height: 500px;
+    width: 800px;
+    height: 600px;
     padding: 20px;
     margin-top: 5%;
-    margin-left: -175px;
+    margin-left: -325px;
     background: rgba(255, 255, 255, 0.589);
 }
 .col-right {
     float: right;
-    width: 600px;
-    height: 500px;
+    width: 800px;
+    height: 600px;
     padding: 20px;
     margin-top: 5%;
-    margin-right: -175px;
+    margin-right: -325px;
     background:  rgba(255, 255, 255, 0.589);;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PokemonService } from 'src/app/_webservices/pokemon.webservice';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { Capacite } from 'src/app/models/capacite.model';
+import { Equipe } from 'src/app/models/equipe.model';
 
 @Component({
   selector: 'app-versus',
@@ -10,22 +11,23 @@ import { Capacite } from 'src/app/models/capacite.model';
 })
 export class VersusComponent implements OnInit {
 
-  @Input() equipe1: any;
-  @Input() equipe2: any;
+  @Input() equipe1: any[];
+  @Input() equipe2: any[];
 
   combatInfo1 = [];
   combatInfo2 = [];
+  commencerTour = false;
 
   equipe1Survi = true;
   equipe2Survi = true;
 
-  joueurActuel: number;
+  actionJ1: Capacite;
+  actionJ2: Capacite;
+  premierJoueur: number;
 
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-    console.log(this.equipe1);
-    console.log(this.equipe2);
 
     // XX définir un objet qui traque la vie des pokemons en combat
     // XX récupérer les infos des pokemons
@@ -51,48 +53,43 @@ export class VersusComponent implements OnInit {
         pokemon: Pokemon
       }]
     */
+
+    let i = 0;
     console.log('remplissage: combatInfo1');
     for (const team of this.equipe1) {
       console.log(team);
       this.pokemonService.getPokemonById(team.pokemon).subscribe((poke: Pokemon) => {
         this.combatInfo1.push({
-          pvActuel: poke[0].pv,
-          equipe: this.equipe1,
+          pvActuel: poke[0].pv * 4,
+          equipe: this.equipe1[i],
           pokemon: poke[0]
         });
+        i++;
       }, (err) => {
         console.error(err);
       });
     }
 
+    i = 0;
     console.log('remplissage: combatInfo2');
     for (const team of this.equipe2) {
       console.log(team);
       this.pokemonService.getPokemonById(team.pokemon).subscribe((poke: Pokemon) => {
-        this.combatInfo1.push({
-          pvActuel: poke[0].pv,
-          equipe: this.equipe2,
+        this.combatInfo2.push({
+          pvActuel: poke[0].pv * 4,
+          equipe: this.equipe2[i],
           pokemon: poke[0]
         });
+        i++;
       }, (err) => {
         console.error(err);
       });
     }
-
-    // Définit le joueur qui commence à jouer selon la vitesse des premiers pokemons
-    console.log(this.combatInfo1[0].pokemon);
-    console.log(this.combatInfo2[0].pokemon);
-    if (this.combatInfo1[0].pokemon.vit > this.combatInfo2[0].pokemon.vit) {
-      this.joueurActuel = 1;
-    } else if (this.combatInfo1[0].pokemon.vit < this.combatInfo2[0].pokemon.vit) {
-      this.joueurActuel = 2;
-    } else {
-      this.joueurActuel = Math.floor(Math.random() * Math.floor(2));
-    }
-
   }
 
   finAction() {
+    this.commencerTour = false;
+
     // vérifier si match fini
     for (const current of this.combatInfo1) {
       this.equipe1Survi = this.equipe1Survi && current.pvActuel <= 0;
@@ -102,7 +99,7 @@ export class VersusComponent implements OnInit {
     }
 
     // changement auto pkm
-    if (this.joueurActuel === 1) {
+    /*if (this.joueurActuel === 1) {
       let max = 1;
       while (this.combatInfo1[0].pvActuel <= 0 && this.combatInfo1.length > max) {
         this.combatInfo1.push(this.combatInfo1.shift());
@@ -114,29 +111,59 @@ export class VersusComponent implements OnInit {
         this.combatInfo2.push(this.combatInfo2.shift());
         max++;
       }
+    }*/
+  }
+
+  clickCapa(capacite: Capacite, joueur: number) {
+    if (joueur === 1) {
+      this.actionJ1 = capacite;
+    } else {
+      this.actionJ2 = capacite;
     }
 
-    // Le joueur actuel est maintenant l'autre
-    if (this.joueurActuel === 1) {
-      this.joueurActuel = 2;
+    if (this.commencerTour) {
+      // Définit le joueur qui commence à jouer selon la vitesse de son pokemon
+      console.log(this.combatInfo1[0].pokemon);
+      if (this.combatInfo1[0].pokemon.vit > this.combatInfo2[0].pokemon.vit) {
+        this.premierJoueur = 1;
+      } else if (this.combatInfo1[0].pokemon.vit < this.combatInfo2[0].pokemon.vit) {
+        this.premierJoueur = 2;
+      } else {
+        this.premierJoueur = Math.round(Math.random() * Math.floor(2));
+      }
+
+      if (this.premierJoueur === 1) {
+        this.effectuerAttaqueJ1(this.actionJ1);
+        this.effectuerAttaqueJ2(this.actionJ2);
+      } else {
+        this.effectuerAttaqueJ2(this.actionJ2);
+        this.effectuerAttaqueJ1(this.actionJ1);
+      }
+      console.log(this.combatInfo1);
+      console.log(this.combatInfo2);
+      this.finAction();
     } else {
-      this.joueurActuel = 1;
+      this.commencerTour = true;
     }
   }
 
-  clickCapa(capacite: Capacite) {
-    if (this.joueurActuel === 1) {
-      if (this.precisionSucces(capacite.precisionCapacite)) {
-        this.combatInfo2[0].pv = this.combatInfo2[0].pv - this.calculDegats(
-          this.combatInfo2[0].pokemon.atk, this.combatInfo1[0].pokemon.def, capacite.puissance,
-          this.calculTypeMult(capacite.type, this.combatInfo1[0].pokemon.type));
-      }
+  effectuerAttaqueJ1(capacite: Capacite) {
+    if (this.precisionSucces(capacite.precisionCapacite)) {
+      this.combatInfo2[0].pvActuel = this.combatInfo2[0].pvActuel - this.calculDegats(
+        this.combatInfo2[0].pokemon.atk, this.combatInfo1[0].pokemon.def, capacite.puissance,
+        this.calculTypeMult(capacite.type, this.combatInfo1[0].pokemon.type));
     } else {
-      if (this.precisionSucces(capacite.precisionCapacite)) {
-        this.combatInfo1[0].pv = this.combatInfo1[0].pv - this.calculDegats(
-          this.combatInfo1[0].pokemon.atk, this.combatInfo2[0].pokemon.def, capacite.puissance,
-          this.calculTypeMult(capacite.type, this.combatInfo2[0].pokemon.type));
-      }
+      console.log('la capacité du j1 a loupé');
+    }
+  }
+
+  effectuerAttaqueJ2(capacite: Capacite) {
+    if (this.precisionSucces(capacite.precisionCapacite)) {
+      this.combatInfo1[0].pvActuel = this.combatInfo1[0].pvActuel - this.calculDegats(
+        this.combatInfo1[0].pokemon.atk, this.combatInfo2[0].pokemon.def, capacite.puissance,
+        this.calculTypeMult(capacite.type, this.combatInfo2[0].pokemon.type));
+    } else {
+      console.log('la capacité du j2 a loupé');
     }
   }
 
@@ -168,11 +195,13 @@ export class VersusComponent implements OnInit {
   }
 
   precisionSucces(precision: number) {
-    return Math.floor(Math.random() * Math.floor(100)) <= precision;
+    return Math.round(Math.random() * Math.round(100)) <= precision;
   }
 
   calculDegats(atk: number, def: number, puissance: number, typeMult: number) {
-    console.log('Dégats infligés: ' + (atk / def * puissance * typeMult));
-    return (atk / def * puissance * typeMult);
+    console.log('Dégats infligés: ' + Math.round(atk / def * puissance * typeMult));
+    return Math.round(atk / def * puissance * typeMult);
   }
+
+  log(val) { console.log(val); }
 }

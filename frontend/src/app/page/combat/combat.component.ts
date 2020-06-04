@@ -13,14 +13,19 @@ import { Dresseur } from '../../models/dresseur.model';
 })
 export class CombatComponent implements OnInit {
   isLoggedIn = false;
+  vueCombat = false;
   username: string;
   idDresseur: string;
   nomEquipeList = [];
-  nomEquipeListD2  =[];
-  selectedEquipe = '';
+  nomEquipeListD2  = [];
+  selectedEquipe1 =  [];
   nomDresseurList = [];
   selectedDresseur = '';
-  selectedEquipe2 = '';
+  selectedTeamName1 = '';
+  selectedTeamName2 = '';
+  selectedEquipe2 =  [];
+  listeEquipes1: Equipe[];
+  listeEquipes2: Equipe[];
 
   constructor(private tokenStorageService: TokenStorageService,  private equipeService: EquipeService, private dresseurService: DresseurService) { }
 
@@ -43,6 +48,7 @@ export class CombatComponent implements OnInit {
 
   private loadNomEquipeByIdDresseur(id: string) {
     this.equipeService.getEquipesByDresseurId(id).subscribe((equipes: Equipe[]) => {
+      this.listeEquipes1 = equipes;
       for (const team of equipes) {
         if (this.nomEquipeList.indexOf(team.nomEquipe) === -1) {
           this.nomEquipeList.push(team.nomEquipe);
@@ -56,12 +62,13 @@ export class CombatComponent implements OnInit {
 
   private loadNomEquipeByIdDresseurD2(id: number) {
     this.equipeService.getEquipesByDresseurId(id.toString()).subscribe((equipes: Equipe[]) => {
+      this.listeEquipes2 = equipes;
       for (const team of equipes) {
         if (this.nomEquipeListD2.indexOf(team.nomEquipe) === -1) {
           this.nomEquipeListD2.push(team.nomEquipe);
         }
       }
-        this.nomEquipeListD2.sort();
+      this.nomEquipeListD2.sort();
       }, (err) => {
         console.error(err);
       });
@@ -83,11 +90,39 @@ export class CombatComponent implements OnInit {
 
   getDresseurId() {
     this.dresseurService.getDresseurByUsername(this.selectedDresseur).subscribe((dresseurs: Dresseur[]) => {
-      this.nomEquipeListD2= [];
+      this.nomEquipeListD2 = [];
       for (const dresseur of dresseurs) {
-        this.loadNomEquipeByIdDresseurD2(dresseur.id)
+        this.loadNomEquipeByIdDresseurD2(dresseur.id);
       }
     });
-  }s
+  }
+
+  changeVue() {
+    this.vueCombat = !this.vueCombat;
+  }
+
+  updateSelectedEquipe1() {
+    // On réinitialise la valeur
+    this.selectedEquipe1.length = 0;
+
+    // Attribution de la nouvelle valeur
+    for (const team of this.listeEquipes1) {
+      if (team.nomEquipe === this.selectedTeamName1) {
+        this.selectedEquipe1.push(team);
+      }
+    }
+  }
+
+  updateSelectedEquipe2() {
+    // On réinitialise la valeur
+    this.selectedEquipe2.length = 0;
+
+    // Attribution de la nouvelle valeur
+    for (const team of this.listeEquipes2) {
+      if (team.nomEquipe === this.selectedTeamName2) {
+        this.selectedEquipe2.push(team);
+      }
+    }
+  }
 
 }
