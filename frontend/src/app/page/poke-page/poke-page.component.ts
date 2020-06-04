@@ -112,9 +112,11 @@ export class PokePageComponent implements OnInit {
             this.capacite2Prec, this.capacite2Type)).subscribe((capa2: any) => {
               this.createdCapacite2Id = capa2.insertId;
               this.createTeam();
+              location.reload();
           }, (err) => { console.error(err); });
         } else {
           this.createTeam();
+          location.reload();
         }
     }, (err) => { console.error(err); });
   }
