@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3308
--- Généré le :  jeu. 14 mai 2020 à 21:20
+-- Généré le :  jeu. 04 juin 2020 à 06:16
 -- Version du serveur :  8.0.18
 -- Version de PHP :  7.3.12
 
@@ -22,9 +22,6 @@ SET time_zone = "+00:00";
 -- Base de données :  `pokbattle`
 --
 
-create database pokbattle;
-use pokbattle;
-
 -- --------------------------------------------------------
 
 --
@@ -39,13 +36,25 @@ CREATE TABLE IF NOT EXISTS `capacite` (
   `precisionCapacite` int(11) NOT NULL,
   `type` varchar(10) NOT NULL,
   PRIMARY KEY (`idCapacite`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `capacite`
+--
+
+INSERT INTO `capacite` (`idCapacite`, `nom`, `puissance`, `precisionCapacite`, `type`) VALUES
+(64, 'Roue de feu', 50, 100, 'Feu'),
+(66, 'Cannon à eau', 105, 45, 'Eau'),
+(67, 'blast', 119, 31, 'Normal'),
+(68, 'Brûlure', 100, 50, 'Feu'),
+(69, 'Charge', 75, 75, 'Normal');
 
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `dresseur`
 --
+
 DROP TABLE IF EXISTS `dresseur`;
 CREATE TABLE IF NOT EXISTS `dresseur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -55,7 +64,14 @@ CREATE TABLE IF NOT EXISTS `dresseur` (
   `sexe` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `dresseur`
+--
+
+INSERT INTO `dresseur` (`id`, `username`, `password`, `description`, `sexe`) VALUES
+(10, 'testuser', '$2a$08$VwjiXmcjh7wNgmfjqtp3N.dAw3Po/q.vd1FaM2GMvkyQnvJ7z3DBC', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -76,7 +92,15 @@ CREATE TABLE IF NOT EXISTS `equipe` (
   KEY `FK_pokemon` (`pokemon`),
   KEY `FK_capacite1` (`capacite1`),
   KEY `FK_capacite2` (`capacite2`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `equipe`
+--
+
+INSERT INTO `equipe` (`idEquipe`, `nomEquipe`, `dresseur`, `pokemon`, `capacite1`, `capacite2`) VALUES
+(11, 'PikaTeam', 10, 3, 66, NULL),
+(12, 'PikaTeam', 10, 2, 67, NULL);
 
 -- --------------------------------------------------------
 
@@ -129,7 +153,7 @@ INSERT INTO `pokemon` (`idPokemon`, `nom`, `type`, `pv`, `atk`, `def`, `vit`) VA
 --
 ALTER TABLE `equipe`
   ADD CONSTRAINT `FK_capacite1` FOREIGN KEY (`capacite1`) REFERENCES `capacite` (`idCapacite`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_capacite2` FOREIGN KEY (`capacite2`) REFERENCES `capacite` (`idCapacite`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_capacite2` FOREIGN KEY (`capacite2`) REFERENCES `capacite` (`idCapacite`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_dresseur` FOREIGN KEY (`dresseur`) REFERENCES `dresseur` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_pokemon` FOREIGN KEY (`pokemon`) REFERENCES `pokemon` (`idPokemon`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
