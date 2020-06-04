@@ -22,6 +22,11 @@ export class HomeComponent implements OnInit {
     );
 
     document.body.classList.remove('combat-bg-img');
+    document.body.classList.remove ("capture-bg-img");
+    document.body.classList.remove ("équipe-bg-img");
+    document.body.classList.remove ("register-bg-img");
+    document.body.classList.remove ("authpage-bg-img");
+    document.body.classList.add ("accueil-bg-img");
   }
 
 }
