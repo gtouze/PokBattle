@@ -1,0 +1,13 @@
+<h1>Au tour de: nomProchainJoueur</h1>
+<div class="col-left">
+  currentHp / maxHp<br/>
+  <app-pokemon [team]="pokemon"
+             (clickCapacite1)="clickCapa1($event)"
+             (clickCapacite2)="clickCapa2($event)"
+             *ngFor="let pokemon of equipe">
+  </app-pokemon>
+  boutton changer pkm
+</div>
+<div class="col-right">
+  
+</div>

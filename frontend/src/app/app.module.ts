@@ -27,6 +27,7 @@ import { EquipeComponent, PopupModifierCapacite } from './component/equipe/equip
 import { PokemonComponent } from './component/pokemon/pokemon.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CombatComponent } from './page/combat/combat.component';
+import { VersusComponent } from './component/versus/versus.component';
 
 // import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -42,7 +43,8 @@ import { CombatComponent } from './page/combat/combat.component';
     EquipeComponent,
     PokemonComponent,
     PopupModifierCapacite,
-    CombatComponent
+    CombatComponent,
+    VersusComponent
   ],
   imports: [
     BrowserModule,

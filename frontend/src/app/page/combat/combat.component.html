@@ -1,4 +1,4 @@
-
+<div [hidden]="true">
   <h1>Bienvenue dans l'arène !</h1>
   <div class="col-left" *ngIf="isLoggedIn">
     <p>Dresseur connecté :</p>
@@ -27,3 +27,7 @@
       </mat-select>
     </mat-form-field>
   </div>
+</div>
+<div [hidden]="false">
+  <app-versus></app-versus>
+</div>

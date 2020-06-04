@@ -1,0 +1,27 @@
+h1{
+    text-align: center;
+    padding: 10px 0 10px 0;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.col-left {
+    float: left;
+    width: 600px;
+    height: 500px;
+    padding: 20px;
+    margin-top: 5%;
+    margin-left: -175px;
+    background: rgba(255, 255, 255, 0.589);
+}
+.col-right {
+    float: right;
+    width: 600px;
+    height: 500px;
+    padding: 20px;
+    margin-top: 5%;
+    margin-right: -175px;
+    background:  rgba(255, 255, 255, 0.589);;
+}
