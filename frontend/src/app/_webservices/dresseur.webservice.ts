@@ -27,6 +27,6 @@ export class DresseurService {
   }
 
   getDresseurByUsername(username: string) {
-    return this.http.get<Dresseur[]>(this.url + '/' + username);
+    return this.http.get<Dresseur[]>(this.url + '/byusername/' + username);
   }
 }

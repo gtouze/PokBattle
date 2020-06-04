@@ -15,15 +15,19 @@
     <p>Choisissez un adversaire :</p>
     <mat-form-field appearance="fill">
       <mat-label>Choix du dresseur</mat-label>
-      <mat-select [(value)]="selectedDresseur">
-          <mat-option value="{{username}}" *ngFor="let username of nomDresseurList">{{username}}</mat-option>
+      <mat-select [(value)]="selectedDresseur" (selectionChange)='getDresseurId()'>
+          <mat-option value="{{username}}" *ngFor="let username of nomDresseurList" >{{username}}</mat-option>
       </mat-select>
     </mat-form-field>
     <p>Equipe disponible pour ce Dresseur :</p>
     <mat-form-field appearance="fill">
       <mat-label>Choix de l'equipe</mat-label>
-      <mat-select >
-          <mat-option value="{{nomEquipe}}" *ngFor="let nomEquipe of nomEquipeListD2">{{nomEquipe}}</mat-option>
+      <mat-select [(value)]="selectedEquipe2">
+          <mat-option #equipeD2 value="{{nomEquipe}}" *ngFor="let nomEquipe of nomEquipeListD2">{{nomEquipe}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
+  <div class="btn-arene">
+    <button mat-raised-button class="bouton-arene">Let's battle !</button>
+  </div>
+ 

@@ -24,8 +24,8 @@ router.get('/:id', function (req, res) {
     });
 });
 
-router.get('/:username', function (req, res) {
-    Dresseur.getDresseur(req.params.username, function(err, rows) {
+router.get('/byusername/:username', function (req, res) {
+    Dresseur.getDresseurbyUsername(req.params.username, function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {

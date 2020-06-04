@@ -20,8 +20,7 @@ export class CombatComponent implements OnInit {
   selectedEquipe = '';
   nomDresseurList = [];
   selectedDresseur = '';
-  Dresseur2: [];
-  
+  selectedEquipe2 = '';
 
   constructor(private tokenStorageService: TokenStorageService,  private equipeService: EquipeService, private dresseurService: DresseurService) { }
 
@@ -34,13 +33,10 @@ export class CombatComponent implements OnInit {
       this.username = user.username;
       this.idDresseur = user.id;
     }
-    
-    const dresseur2 = this.dresseurService.getDresseurByUsername(this.selectedDresseur);
-    console.log(dresseur2);
 
     this.loadNomEquipeByIdDresseur(this.idDresseur);
     this.loadAllNomDresseur();
-    this.loadNomEquipeByIdDresseurD2('12');
+    //this.loadNomEquipeByIdDresseurD2('');
 
     document.body.classList.add('combat-bg-img');
   }
@@ -58,8 +54,8 @@ export class CombatComponent implements OnInit {
       });
   }
 
-  private loadNomEquipeByIdDresseurD2(id: string) {
-    this.equipeService.getEquipesByDresseurId(id).subscribe((equipes: Equipe[]) => {
+  private loadNomEquipeByIdDresseurD2(id: number) {
+    this.equipeService.getEquipesByDresseurId(id.toString()).subscribe((equipes: Equipe[]) => {
       for (const team of equipes) {
         if (this.nomEquipeListD2.indexOf(team.nomEquipe) === -1) {
           this.nomEquipeListD2.push(team.nomEquipe);
@@ -80,9 +76,18 @@ export class CombatComponent implements OnInit {
         }
       }
       this.nomDresseurList.sort();
-      console.log(this.selectedDresseur);
     }, (err) => {
       console.error(err);
     });
   }
+
+  getDresseurId() {
+    this.dresseurService.getDresseurByUsername(this.selectedDresseur).subscribe((dresseurs: Dresseur[]) => {
+      this.nomEquipeListD2= [];
+      for (const dresseur of dresseurs) {
+        this.loadNomEquipeByIdDresseurD2(dresseur.id)
+      }
+    });
+  }s
+
 }
