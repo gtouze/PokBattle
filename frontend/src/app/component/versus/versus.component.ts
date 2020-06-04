@@ -14,13 +14,15 @@ export class VersusComponent implements OnInit {
   @Input() equipe1: any[];
   @Input() equipe2: any[];
 
-  combatInfo1 = [];
-  combatInfo2 = [];
+  replacedPokemon1 = false;
+  replacedPokemon2 = false;
+  changePokemon1 = false;
+  changePokemon2 = false;
   commencerTour = false;
-
   equipe1Survi = true;
   equipe2Survi = true;
-
+  combatInfo1 = [];
+  combatInfo2 = [];
   actionJ1: Capacite;
   actionJ2: Capacite;
   premierJoueur: number;
@@ -31,7 +33,7 @@ export class VersusComponent implements OnInit {
 
     // XX définir un objet qui traque la vie des pokemons en combat
     // XX récupérer les infos des pokemons
-    //    gestion tour par tour                       <- partie front à gérer
+    // XX gestion tour par tour
     // XX gestion attaque
     //    gestion changement de pokemon
     // XX definir joueurActuel dans ngInit
@@ -52,66 +54,30 @@ export class VersusComponent implements OnInit {
         equipe: Equipe,
         pokemon: Pokemon
       }]
-    */
-
-    let i = 0;
-    console.log('remplissage: combatInfo1');
+     */
     for (const team of this.equipe1) {
-      console.log(team);
       this.pokemonService.getPokemonById(team.pokemon).subscribe((poke: Pokemon) => {
         this.combatInfo1.push({
           pvActuel: poke[0].pv * 4,
-          equipe: this.equipe1[i],
+          equipe: team,
           pokemon: poke[0]
         });
-        i++;
       }, (err) => {
         console.error(err);
       });
     }
 
-    i = 0;
-    console.log('remplissage: combatInfo2');
     for (const team of this.equipe2) {
-      console.log(team);
       this.pokemonService.getPokemonById(team.pokemon).subscribe((poke: Pokemon) => {
         this.combatInfo2.push({
           pvActuel: poke[0].pv * 4,
-          equipe: this.equipe2[i],
+          equipe: team,
           pokemon: poke[0]
         });
-        i++;
       }, (err) => {
         console.error(err);
       });
     }
-  }
-
-  finAction() {
-    this.commencerTour = false;
-
-    // vérifier si match fini
-    for (const current of this.combatInfo1) {
-      this.equipe1Survi = this.equipe1Survi && current.pvActuel <= 0;
-    }
-    for (const current of this.combatInfo2) {
-      this.equipe2Survi = this.equipe2Survi && current.pvActuel <= 0;
-    }
-
-    // changement auto pkm
-    /*if (this.joueurActuel === 1) {
-      let max = 1;
-      while (this.combatInfo1[0].pvActuel <= 0 && this.combatInfo1.length > max) {
-        this.combatInfo1.push(this.combatInfo1.shift());
-        max++;
-      }
-    } else {
-      let max = 1;
-      while (this.combatInfo2[0].pvActuel <= 0 && this.combatInfo2.length > max) {
-        this.combatInfo2.push(this.combatInfo2.shift());
-        max++;
-      }
-    }*/
   }
 
   clickCapa(capacite: Capacite, joueur: number) {
@@ -123,7 +89,6 @@ export class VersusComponent implements OnInit {
 
     if (this.commencerTour) {
       // Définit le joueur qui commence à jouer selon la vitesse de son pokemon
-      console.log(this.combatInfo1[0].pokemon);
       if (this.combatInfo1[0].pokemon.vit > this.combatInfo2[0].pokemon.vit) {
         this.premierJoueur = 1;
       } else if (this.combatInfo1[0].pokemon.vit < this.combatInfo2[0].pokemon.vit) {
@@ -134,36 +99,96 @@ export class VersusComponent implements OnInit {
 
       if (this.premierJoueur === 1) {
         this.effectuerAttaqueJ1(this.actionJ1);
-        this.effectuerAttaqueJ2(this.actionJ2);
+        if (this.combatInfo2[0].pvActuel > 0) {
+          this.effectuerAttaqueJ2(this.actionJ2);
+        } else {
+          this.pokemonKoJ2();
+        }
       } else {
         this.effectuerAttaqueJ2(this.actionJ2);
-        this.effectuerAttaqueJ1(this.actionJ1);
+        if (this.combatInfo1[0].pvActuel > 0) {
+          this.effectuerAttaqueJ1(this.actionJ1);
+        } else {
+          this.pokemonKoJ1();
+        }
       }
-      console.log(this.combatInfo1);
-      console.log(this.combatInfo2);
-      this.finAction();
+      this.commencerTour = false;
+      this.replacedPokemon1 = false;
+      this.replacedPokemon2 = false;
     } else {
       this.commencerTour = true;
     }
   }
 
+  isPartieFini() {
+    // vérifier si match fini
+    this.equipe1Survi = this.combatInfo1.length > 0;
+    this.equipe2Survi = this.combatInfo2.length > 0;
+
+    return this.equipe1Survi && this.equipe2Survi;
+  }
+
+  pokemonKoJ1() {
+    if (!this.isPartieFini()) {
+      this.combatInfo1.shift();
+    }
+  }
+
+  pokemonKoJ2() {
+    if (!this.isPartieFini()) {
+      this.combatInfo2.shift();
+    }
+  }
+
+  remplacerPokemon1(infoCbt: any) {
+    this.replacedPokemon1 = true;
+    this.commencerTour = true;
+    let max = 1;
+    while (this.combatInfo1.length > max) {
+      this.combatInfo1.push(this.combatInfo1.shift());
+      max++;
+      if (this.combatInfo1[0] === infoCbt) {
+        console.log(this.combatInfo1[0].equipe);
+        break;
+      }
+    }
+  }
+
+  remplacerPokemon2(infoCbt: any) {
+    this.replacedPokemon2 = true;
+    this.commencerTour = true;
+    let max = 1;
+    while (this.combatInfo2.length > max) {
+      this.combatInfo2.push(this.combatInfo2.shift());
+      max++;
+      if (this.combatInfo2[0] === infoCbt) {
+        console.log(this.combatInfo2[0].equipe);
+        break;
+      }
+    }
+  }
+
   effectuerAttaqueJ1(capacite: Capacite) {
-    if (this.precisionSucces(capacite.precisionCapacite)) {
-      this.combatInfo2[0].pvActuel = this.combatInfo2[0].pvActuel - this.calculDegats(
-        this.combatInfo2[0].pokemon.atk, this.combatInfo1[0].pokemon.def, capacite.puissance,
-        this.calculTypeMult(capacite.type, this.combatInfo1[0].pokemon.type));
-    } else {
-      console.log('la capacité du j1 a loupé');
+    if (!this.replacedPokemon1) {
+      if (this.precisionSucces(capacite.precisionCapacite)) {
+        this.combatInfo2[0].pvActuel = this.combatInfo2[0].pvActuel - this.calculDegats(
+          this.combatInfo2[0].pokemon.atk, this.combatInfo1[0].pokemon.def, capacite.puissance,
+          this.calculTypeMult(capacite.type, this.combatInfo1[0].pokemon.type));
+      } else {
+        console.log('la capacité du j1 a loupé');
+      }
     }
   }
 
   effectuerAttaqueJ2(capacite: Capacite) {
-    if (this.precisionSucces(capacite.precisionCapacite)) {
-      this.combatInfo1[0].pvActuel = this.combatInfo1[0].pvActuel - this.calculDegats(
-        this.combatInfo1[0].pokemon.atk, this.combatInfo2[0].pokemon.def, capacite.puissance,
-        this.calculTypeMult(capacite.type, this.combatInfo2[0].pokemon.type));
-    } else {
-      console.log('la capacité du j2 a loupé');
+    if (!this.replacedPokemon2) {
+      if (this.precisionSucces(capacite.precisionCapacite)) {
+        this.combatInfo1[0].pvActuel = this.combatInfo1[0].pvActuel - this.calculDegats(
+          this.combatInfo1[0].pokemon.atk, this.combatInfo2[0].pokemon.def, capacite.puissance,
+          this.calculTypeMult(capacite.type, this.combatInfo2[0].pokemon.type));
+      } else {
+        console.log('la capacité du j2 a loupé');
+      }
     }
   }
 
@@ -203,5 +228,11 @@ export class VersusComponent implements OnInit {
     return Math.round(atk / def * puissance * typeMult);
   }
 
-  log(val) { console.log(val); }
+  toggleChangePokemon1() {
+    this.changePokemon1 = !this.changePokemon1;
+  }
+
+  toggleChangePokemon2() {
+    this.changePokemon2 = !this.changePokemon2;
+  }
 }
