@@ -5,6 +5,7 @@ import { AuthpageComponent } from './page/authpage/authpage.component';
 import { HomeComponent } from './page/home/home.component';
 import { PokePageComponent } from './page/poke-page/poke-page.component';
 import { AffichageEquipeComponent } from './page/affichage-equipe/affichage-equipe.component';
+import { CombatComponent } from './page/combat/combat.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterpageComponent },
   { path: 'capture', component: PokePageComponent },
   { path: 'equipe', component: AffichageEquipeComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'combat', component: CombatComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

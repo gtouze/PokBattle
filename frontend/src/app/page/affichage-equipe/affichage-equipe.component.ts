@@ -36,6 +36,8 @@ export class AffichageEquipeComponent implements OnInit {
     }, (err) => {
       console.error(err);
     });
+
+    document.body.classList.remove('combat-bg-img');
   }
 
   updateSelectedTeam() {

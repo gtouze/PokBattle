@@ -24,6 +24,16 @@ router.get('/:id', function (req, res) {
     });
 });
 
+router.get('/:username', function (req, res) {
+    Dresseur.getDresseur(req.params.username, function(err, rows) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.json(rows);
+        }
+    });
+});
+
 router.post('/', function (req, res) {
     Dresseur.createDresseur(req.body, function(err, rows) {
         if(err) {

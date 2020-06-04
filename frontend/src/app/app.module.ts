@@ -26,6 +26,7 @@ import { AffichageEquipeComponent } from './page/affichage-equipe/affichage-equi
 import { EquipeComponent, PopupModifierCapacite } from './component/equipe/equipe.component';
 import { PokemonComponent } from './component/pokemon/pokemon.component';
 import { MatButtonModule } from '@angular/material/button';
+import { CombatComponent } from './page/combat/combat.component';
 
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -40,7 +41,8 @@ import { MatButtonModule } from '@angular/material/button';
     AffichageEquipeComponent,
     EquipeComponent,
     PokemonComponent,
-    PopupModifierCapacite
+    PopupModifierCapacite,
+    CombatComponent
   ],
   imports: [
     BrowserModule,

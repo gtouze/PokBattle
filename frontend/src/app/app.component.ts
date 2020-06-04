@@ -8,7 +8,6 @@ import { TokenStorageService } from './_services/token-storage.service';
 })
 export class AppComponent implements OnInit {
   title = 'PokBattle';
-  private roles: string[];
   isLoggedIn = false;
   username: string;
 
