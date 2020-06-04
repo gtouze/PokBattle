@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AuthpageComponent } from './page/authpage/authpage.component';
 import { RegisterpageComponent } from './page/registerpage/registerpage.component';
@@ -28,7 +28,7 @@ import { PokemonComponent } from './component/pokemon/pokemon.component';
 import { MatButtonModule } from '@angular/material/button';
 import { CombatComponent } from './page/combat/combat.component';
 
-//import { authInterceptorProviders } from './_helpers/auth.interceptor';
+// import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
