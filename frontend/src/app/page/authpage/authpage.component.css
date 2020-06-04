@@ -1,0 +1,27 @@
+div.card.card-container {
+    margin: 0 auto;
+    margin-top: 20em;
+    border: none;
+    width: 300px;
+}
+
+div.col-md-12.bg-connexion input {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px #000;
+    color: #000;
+}
+
+button.btn.btn-primary.btn-block {
+    margin-top: 44px;
+    background: #FFCC00;
+    border: none;
+}
+
+div.card.card-container {
+    background: transparent;
+}
+
+label {
+    font-weight: bold;
+}

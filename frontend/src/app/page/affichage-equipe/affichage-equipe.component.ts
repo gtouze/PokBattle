@@ -20,6 +20,10 @@ export class AffichageEquipeComponent implements OnInit {
     }, (err) => {
       console.error(err);
     });
+    document.body.classList.remove ("accueil-bg-img");
+    document.body.classList.remove ("capture-bg-img");
+    document.body.classList.remove ("register-bg-img");
+    document.body.classList.remove ("authpage-bg-img");
+    document.body.classList.add ("équipe-bg-img");
   }
-
 }

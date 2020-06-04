@@ -22,6 +22,13 @@ export class AuthpageComponent implements OnInit {
       this.isLoggedIn = true;
       //this.roles = this.tokenStorage.getUser().roles;
     }
+
+    document.body.classList.remove ("accueil-bg-img");
+    document.body.classList.remove ("capture-bg-img");
+    document.body.classList.remove ("équipe-bg-img");
+    document.body.classList.remove ("register-bg-img");
+    document.body.classList.add ("authpage-bg-img");
+
   }
 
   onSubmit() {

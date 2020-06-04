@@ -20,6 +20,12 @@ export class HomeComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     );
+
+    document.body.classList.remove ("capture-bg-img");
+    document.body.classList.remove ("équipe-bg-img");
+    document.body.classList.remove ("register-bg-img");
+    document.body.classList.remove ("authpage-bg-img");
+    document.body.classList.add ("accueil-bg-img");
   }
 
 }

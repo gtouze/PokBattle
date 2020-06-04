@@ -1,4 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+    height: 100%;
+}
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.accueil-bg-img
+{
+    background-image: url("src/assets/accueil.png");
+    background-position: center;
+    background-repeat: no-repeat; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.capture-bg-img {
+    background-image: url("src/assets/capture.png");
+    background-position: center;
+    background-repeat: no-repeat; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.équipe-bg-img {
+    background-image: url("src/assets/équipe.png");
+    background-position: center;
+    background-repeat: no-repeat; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.register-bg-img {
+    background-image: url("src/assets/register.png");
+    background-position: center;
+    background-repeat: no-repeat; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.authpage-bg-img {
+    background-image: url("src/assets/authpage.png");
+    background-position: center;
+    background-repeat: no-repeat; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
