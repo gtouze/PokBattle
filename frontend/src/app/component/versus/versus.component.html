@@ -1,6 +1,10 @@
 <h1>A vous de jouer</h1>
 <div *ngIf="combatInfo1[0]" class="col-left">
-  <p>{{combatInfo1[0].pvActuel}} / {{combatInfo1[0].pokemon.pv * 4}}</p>
+  <div class="health-bar">
+    <p class="poke-name">{{combatInfo1[0].pokemon.nom}}</p>
+    <progress class="progress" [ngClass]="{'success': combatInfo1[0].pvActuel >= combatInfo1[0].pvActuel , 'warning': combatInfo1[0].pvActuel  < 150, 'danger': combatInfo1[0].pvActuel  < 50 }"  value="{{combatInfo1[0].pvActuel}}"  max="{{combatInfo1[0].pokemon.pv * 4}}"></progress>
+    <p class="pv">{{combatInfo1[0].pvActuel}} / {{combatInfo1[0].pokemon.pv * 4}}</p>
+  </div>
   <app-pokemon [team]="combatInfo1[0].equipe"
              (clickCapacite1)="clickCapa($event, 1)"
              (clickCapacite2)="clickCapa($event, 1)">
@@ -16,7 +20,11 @@
   <button mat-raised-button (click)="refresh()">Nouveau duel</button>
 </div>
 <div *ngIf="combatInfo2[0]" class="col-right">
-    <p>{{combatInfo2[0].pvActuel}} / {{combatInfo2[0].pokemon.pv * 4}}</p>
+  <div class="health-bar">
+    <p class="poke-name">{{combatInfo1[0].pokemon.nom}}</p>
+    <progress class="progress" value="{{combatInfo2[0].pvActuel}}"  max="{{combatInfo2[0].pokemon.pv * 4}}"></progress>
+    <p class="pv">{{combatInfo2[0].pvActuel}} / {{combatInfo2[0].pokemon.pv * 4}}</p>
+  </div>
     <app-pokemon [team]="combatInfo2[0].equipe"
                (clickCapacite1)="clickCapa($event, 2)"
                (clickCapacite2)="clickCapa($event, 2)">
