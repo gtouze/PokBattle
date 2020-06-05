@@ -4,7 +4,7 @@
     <a href="#" class="navbar-brand"></a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a href="/combat" class="nav-link" routerLink="combat">Arène de combat</a>
+        <a href="/combat" class="nav-link" routerLink="combat" *ngIf="isLoggedIn">Arène de combat</a>
       </li>
     </ul>
 

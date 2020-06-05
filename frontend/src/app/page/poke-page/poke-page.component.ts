@@ -55,11 +55,11 @@ export class PokePageComponent implements OnInit {
     this.loadAllPokemons();
 
     document.body.classList.remove('combat-bg-img');
-    document.body.classList.remove ("accueil-bg-img");
-    document.body.classList.remove ("équipe-bg-img");
-    document.body.classList.remove ("register-bg-img");
-    document.body.classList.remove ("authpage-bg-img");
-    document.body.classList.add ("capture-bg-img");
+    document.body.classList.remove ('accueil-bg-img');
+    document.body.classList.remove ('équipe-bg-img');
+    document.body.classList.remove ('register-bg-img');
+    document.body.classList.remove ('authpage-bg-img');
+    document.body.classList.add ('capture-bg-img');
 
   }
 
