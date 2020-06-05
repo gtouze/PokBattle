@@ -8,10 +8,10 @@
         novalidate
       >
         <div class="form-group">
-          <label for="username">Pseudo</label>
+          <label for="username" id="pseudo">Pseudo</label>
           <input
             type="text"
-            class="form-control"
+            class="form-control app-register-input"
             name="username"
             [(ngModel)]="form.username"
             required
@@ -33,7 +33,7 @@
           <label for="password">Mot de passe</label>
           <input
             type="password"
-            class="form-control"
+            class="form-control app-register-input"
             name="password"
             [(ngModel)]="form.password"
             required

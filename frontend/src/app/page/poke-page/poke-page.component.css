@@ -1,3 +1,13 @@
 .active {
     background-color: lightgray;
 }
+
+.mat-stepper-horizontal {
+    /*background: transparent;*/
+    background: rgba(255, 255, 255, 0.589);
+    margin-top: 150px;
+}
+
+.mat-table {
+    overflow-y: scroll;
+  }

@@ -7,9 +7,70 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 {
     background-image: url("src/assets/versus-background.jpg");
     background-position: center;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.accueil-bg-img
+{
+    background-image: url("src/assets/équipe.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.capture-bg-img {
+    background-image: url("src/assets/capture.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.équipe-bg-img {
+    background-image: url("src/assets/accueil.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.register-bg-img {
+    background-image: url("src/assets/register.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.authpage-bg-img {
+    background-image: url("src/assets/authpage.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.navbar{
+    height: 70px;
+    opacity: 94.5%;
+}
+
+.navbar .nav-link{
+    font-size: 1.25em;
+    text-transform: uppercase;
 }
