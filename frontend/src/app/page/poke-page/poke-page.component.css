@@ -2,7 +2,12 @@
     background-color: lightgray;
 }
 
-.mat-stepper-horizontal.ng-tns-c115-0.mat-stepper-label-position-end {
-    background: transparent;
+.mat-stepper-horizontal {
+    /*background: transparent;*/
+    background: rgba(255, 255, 255, 0.589);
     margin-top: 150px;
 }
+
+.mat-table {
+    overflow-y: scroll;
+  }

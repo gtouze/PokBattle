@@ -16,7 +16,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .accueil-bg-img
 {
-    background-image: url("src/assets/accueil.png");
+    background-image: url("src/assets/équipe.png");
     background-position: center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -36,7 +36,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .équipe-bg-img {
-    background-image: url("src/assets/équipe.png");
+    background-image: url("src/assets/accueil.png");
     background-position: center;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
