@@ -27,9 +27,10 @@ export class CombatComponent implements OnInit {
   listeEquipes1: Equipe[];
   listeEquipes2: Equipe[];
 
-  constructor(private tokenStorageService: TokenStorageService,  private equipeService: EquipeService, private dresseurService: DresseurService) { }
+  constructor(private tokenStorageService: TokenStorageService,  private equipeService: EquipeService,
+              private dresseurService: DresseurService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
@@ -41,7 +42,7 @@ export class CombatComponent implements OnInit {
 
     this.loadNomEquipeByIdDresseur(this.idDresseur);
     this.loadAllNomDresseur();
-    //this.loadNomEquipeByIdDresseurD2('');
+    // this.loadNomEquipeByIdDresseurD2('');
 
     document.body.classList.add('combat-bg-img');
   }
@@ -54,7 +55,7 @@ export class CombatComponent implements OnInit {
           this.nomEquipeList.push(team.nomEquipe);
         }
       }
-        this.nomEquipeList.sort();
+      this.nomEquipeList.sort();
       }, (err) => {
         console.error(err);
       });

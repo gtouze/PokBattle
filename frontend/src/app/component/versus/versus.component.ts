@@ -11,7 +11,9 @@ import { Equipe } from 'src/app/models/equipe.model';
 })
 export class VersusComponent implements OnInit {
 
+  @Input() pseudo1: string;
   @Input() equipe1: any[];
+  @Input() pseudo2: string;
   @Input() equipe2: any[];
 
   replacedPokemon1 = false;
@@ -30,31 +32,6 @@ export class VersusComponent implements OnInit {
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-
-    // XX définir un objet qui traque la vie des pokemons en combat
-    // XX récupérer les infos des pokemons
-    // XX gestion tour par tour
-    // XX gestion attaque
-    //    gestion changement de pokemon
-    // XX definir joueurActuel dans ngInit
-
-    /*
-      combatInfo1: [{
-        pvActuel: 100,     <- initialisé à la valeur pokemon.pv (max pv du pokemon)
-        equipe: Equipe,     <- récupération de l'objet passé en param au composant app-pokemon
-        pokemon: Pokemon    <- récupération des statistiques depuis ici pour calcul dmg
-      },
-      {
-        pvActuel: 100,
-        equipe: Equipe,
-        pokemon: Pokemon
-      },
-      {
-        pvActuel: 100,
-        equipe: Equipe,
-        pokemon: Pokemon
-      }]
-     */
     for (const team of this.equipe1) {
       this.pokemonService.getPokemonById(team.pokemon).subscribe((poke: Pokemon) => {
         this.combatInfo1.push({
@@ -101,6 +78,9 @@ export class VersusComponent implements OnInit {
         this.effectuerAttaqueJ1(this.actionJ1);
         if (this.combatInfo2[0].pvActuel > 0) {
           this.effectuerAttaqueJ2(this.actionJ2);
+          if (this.combatInfo1[0].pvActuel <= 0) {
+            this.pokemonKoJ1();
+          }
         } else {
           this.pokemonKoJ2();
         }
@@ -108,6 +88,9 @@ export class VersusComponent implements OnInit {
         this.effectuerAttaqueJ2(this.actionJ2);
         if (this.combatInfo1[0].pvActuel > 0) {
           this.effectuerAttaqueJ1(this.actionJ1);
+          if (this.combatInfo2[0].pvActuel <= 0) {
+            this.pokemonKoJ2();
+          }
         } else {
           this.pokemonKoJ1();
         }
@@ -120,7 +103,7 @@ export class VersusComponent implements OnInit {
     }
   }
 
-  isPartieFini() {
+  isPartiePasFini() {
     // vérifier si match fini
     this.equipe1Survi = this.combatInfo1.length > 0;
     this.equipe2Survi = this.combatInfo2.length > 0;
@@ -129,14 +112,18 @@ export class VersusComponent implements OnInit {
   }
 
   pokemonKoJ1() {
-    if (!this.isPartieFini()) {
+    console.log('KO J1');
+    if (this.isPartiePasFini()) {
       this.combatInfo1.shift();
+      this.isPartiePasFini();
     }
   }
 
   pokemonKoJ2() {
-    if (!this.isPartieFini()) {
+    console.log('KO J2');
+    if (this.isPartiePasFini()) {
       this.combatInfo2.shift();
+      this.isPartiePasFini();
     }
   }
 
@@ -148,7 +135,6 @@ export class VersusComponent implements OnInit {
       this.combatInfo1.push(this.combatInfo1.shift());
       max++;
       if (this.combatInfo1[0] === infoCbt) {
-        console.log(this.combatInfo1[0].equipe);
         break;
       }
     }
@@ -162,7 +148,6 @@ export class VersusComponent implements OnInit {
       this.combatInfo2.push(this.combatInfo2.shift());
       max++;
       if (this.combatInfo2[0] === infoCbt) {
-        console.log(this.combatInfo2[0].equipe);
         break;
       }
     }
@@ -171,9 +156,13 @@ export class VersusComponent implements OnInit {
   effectuerAttaqueJ1(capacite: Capacite) {
     if (!this.replacedPokemon1) {
       if (this.precisionSucces(capacite.precisionCapacite)) {
+        console.log('Attaque ' + capacite.nom + ' de ' + this.combatInfo1[0].pokemon.nom + ' inflige '  + this.calculDegats(
+          this.combatInfo1[0].pokemon.atk, this.combatInfo2[0].pokemon.def, capacite.puissance,
+          this.calculTypeMult(capacite.type, this.combatInfo2[0].pokemon.type)) + ' multType ' +
+          this.calculTypeMult(capacite.type, this.combatInfo2[0].pokemon.type));
         this.combatInfo2[0].pvActuel = this.combatInfo2[0].pvActuel - this.calculDegats(
-          this.combatInfo2[0].pokemon.atk, this.combatInfo1[0].pokemon.def, capacite.puissance,
-          this.calculTypeMult(capacite.type, this.combatInfo1[0].pokemon.type));
+          this.combatInfo1[0].pokemon.atk, this.combatInfo2[0].pokemon.def, capacite.puissance,
+          this.calculTypeMult(capacite.type, this.combatInfo2[0].pokemon.type));
       } else {
         console.log('la capacité du j1 a loupé');
       }
@@ -183,9 +172,13 @@ export class VersusComponent implements OnInit {
   effectuerAttaqueJ2(capacite: Capacite) {
     if (!this.replacedPokemon2) {
       if (this.precisionSucces(capacite.precisionCapacite)) {
+        console.log('Attaque ' + capacite.nom + ' de ' + this.combatInfo2[0].pokemon.nom + ' inflige '  + this.calculDegats(
+          this.combatInfo2[0].pokemon.atk, this.combatInfo1[0].pokemon.def, capacite.puissance,
+          this.calculTypeMult(capacite.type, this.combatInfo1[0].pokemon.type)) + ' multType: ' +
+          this.calculTypeMult(capacite.type, this.combatInfo1[0].pokemon.type));
         this.combatInfo1[0].pvActuel = this.combatInfo1[0].pvActuel - this.calculDegats(
-          this.combatInfo1[0].pokemon.atk, this.combatInfo2[0].pokemon.def, capacite.puissance,
-          this.calculTypeMult(capacite.type, this.combatInfo2[0].pokemon.type));
+          this.combatInfo2[0].pokemon.atk, this.combatInfo1[0].pokemon.def, capacite.puissance,
+          this.calculTypeMult(capacite.type, this.combatInfo1[0].pokemon.type));
       } else {
         console.log('la capacité du j2 a loupé');
       }
@@ -224,7 +217,6 @@ export class VersusComponent implements OnInit {
   }
 
   calculDegats(atk: number, def: number, puissance: number, typeMult: number) {
-    console.log('Dégats infligés: ' + Math.round(atk / def * puissance * typeMult));
     return Math.round(atk / def * puissance * typeMult);
   }
 
@@ -235,4 +227,9 @@ export class VersusComponent implements OnInit {
   toggleChangePokemon2() {
     this.changePokemon2 = !this.changePokemon2;
   }
+
+  refresh(): void {
+    window.location.reload();
+  }
+
 }

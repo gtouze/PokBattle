@@ -10,6 +10,11 @@
     <img src="../../../assets/pokeImg/{{infoCbt.pokemon.nom}}.png" *ngFor="let infoCbt of combatInfo1 | slice:1" (click)="remplacerPokemon1(infoCbt)" style="height: 200px">
   </div>
 </div>
+<div *ngIf="!equipe1Survi" class="col-left">
+  <h1>Le joueur 2 : {{pseudo2}} vient de gagner!</h1>
+  <br/>
+  <button mat-raised-button (click)="refresh()">Nouveau duel</button>
+</div>
 <div *ngIf="combatInfo2[0]" class="col-right">
     <p>{{combatInfo2[0].pvActuel}} / {{combatInfo2[0].pokemon.pv * 4}}</p>
     <app-pokemon [team]="combatInfo2[0].equipe"
@@ -20,4 +25,9 @@
   <div *ngIf="changePokemon2">
     <img src="../../../assets/pokeImg/{{infoCbt.pokemon.nom}}.png" *ngFor="let infoCbt of combatInfo2 | slice:1" (click)="remplacerPokemon2(infoCbt)" style="height: 200px">
   </div>
+</div>
+<div *ngIf="!equipe2Survi" class="col-right">
+  <h1>Le joueur 1 : {{pseudo1}} vient de gagner!</h1>
+  <br/>
+  <button mat-raised-button (click)="refresh()">Nouveau duel</button>
 </div>

@@ -22,6 +22,10 @@ export class PokemonComponent implements OnInit, OnChanges {
   constructor(private pokemonService: PokemonService, private capaciteService: CapaciteService) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnChanges() {
     this.pokemonService.getPokemonById(this.team.pokemon).subscribe((poke: Pokemon) => {
       this.pokemon = poke[0];
     }, (err) => {
@@ -39,11 +43,6 @@ export class PokemonComponent implements OnInit, OnChanges {
         console.error(err);
       });
     }
-  }
-
-  ngOnChanges() {
-    console.log('ngOnChange:');
-    console.log(this.team);
   }
 
   clickCapa1() {

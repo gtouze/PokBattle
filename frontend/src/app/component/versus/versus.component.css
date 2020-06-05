@@ -25,3 +25,9 @@ h1{
     margin-right: -325px;
     background:  rgba(255, 255, 255, 0.589);;
 }
+
+button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
