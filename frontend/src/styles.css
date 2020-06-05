@@ -64,3 +64,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     -o-background-size: cover;
     background-size: cover;
 }
+
+.navbar{
+    height: 70px;
+    opacity: 94.5%;
+}
+
+.navbar .nav-link{
+    font-size: 1.25em;
+    text-transform: uppercase;
+}

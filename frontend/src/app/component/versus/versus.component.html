@@ -21,8 +21,8 @@
 </div>
 <div *ngIf="combatInfo2[0]" class="col-right">
   <div class="health-bar">
-    <p class="poke-name">{{combatInfo1[0].pokemon.nom}}</p>
-    <progress class="progress" value="{{combatInfo2[0].pvActuel}}"  max="{{combatInfo2[0].pokemon.pv * 4}}"></progress>
+    <p class="poke-name">{{combatInfo2[0].pokemon.nom}}</p>
+    <progress class="progress" [ngClass]="{'success': combatInfo1[0].pvActuel >= combatInfo1[0].pvActuel , 'warning': combatInfo1[0].pvActuel  < 150, 'danger': combatInfo1[0].pvActuel  < 50 }" value="{{combatInfo2[0].pvActuel}}"  max="{{combatInfo2[0].pokemon.pv * 4}}"></progress>
     <p class="pv">{{combatInfo2[0].pvActuel}} / {{combatInfo2[0].pokemon.pv * 4}}</p>
   </div>
     <app-pokemon [team]="combatInfo2[0].equipe"
