@@ -1,0 +1,15 @@
+.col-left {
+    float: left;
+    width: 400px;
+    margin: 10px;
+}
+
+.col-right {
+    float: right;
+    width: 400px;
+    margin: 10px;
+}
+
+button {
+    margin: 5px;
+}

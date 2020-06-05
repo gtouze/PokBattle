@@ -6,6 +6,7 @@ import { HomeComponent } from './page/home/home.component';
 import { PokePageComponent } from './page/poke-page/poke-page.component';
 import { AffichageEquipeComponent } from './page/affichage-equipe/affichage-equipe.component';
 import { CombatComponent } from './page/combat/combat.component';
+import { TournoiComponent } from './page/tournoi/tournoi.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'capture', component: PokePageComponent },
   { path: 'equipe', component: AffichageEquipeComponent },
   { path: 'combat', component: CombatComponent },
+  { path: 'tournoi', component: TournoiComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

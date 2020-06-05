@@ -1,0 +1,36 @@
+<mat-form-field appearance="fill">
+    <mat-label>Participant 1:</mat-label>
+    <input matInput [(ngModel)]="participant1">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Participant 2:</mat-label>
+    <input matInput [(ngModel)]="participant2">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Participant 3:</mat-label>
+    <input matInput [(ngModel)]="participant3">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Participant 4:</mat-label>
+    <input matInput [(ngModel)]="participant4">
+  </mat-form-field>
+<br/>
+<button mat-raised-button (click)="creerTournoi()">Créer le tournoi</button>
+<br/>
+<div *ngIf="afficherTournoi">
+    <div class="col-left">
+        <h1>Quart de finale</h1>
+        <ul *ngFor="let match of tournoi">
+            <li><button mat-raised-button (click)="gagnantM1(match.joueur1)">J1: {{match.joueur1}}</button></li>
+            <li><button mat-raised-button (click)="gagnantM1(match.joueur2)">J2: {{match.joueur2}}</button></li>
+        </ul>
+    </div>
+    <div class="col-right" *ngIf="finaliste1 && finaliste2">
+        <h1>Finale:</h1>
+        <ul>
+            <li><button mat-raised-button (click)="gagnantFinal(finaliste1)">J1: {{finaliste1}}</button></li>
+            <li><button mat-raised-button (click)="gagnantFinal(finaliste2)">J2: {{finaliste2}}</button></li>
+        </ul>
+        <h1 *ngIf="winnerFinal">Le gagnant du tournoi est {{winnerFinal}}</h1>
+    </div>
+</div>
